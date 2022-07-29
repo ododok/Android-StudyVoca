@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_main.xml" value="0.3828571428571429" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_main.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/dialog_make_table.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_info.xml" value="0.23052536231884058" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_search.xml" value="0.23052536231884058" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_vocas.xml" value="0.23052536231884058" />
-        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/menu/menu_bottom.xml" value="0.4234375" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/table_item.xml" value="0.2857142857142857" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/menu/menu_bottom.xml" value="0.3828571428571429" />
       </map>
     </option>
   </component>

@@ -18,23 +18,26 @@
       android:text="Make List" />
 
     <Button
+      android:id="@+id/btnTest"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="테스트용 임시버튼"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:layout_editor_absoluteY="0dp" />
+
+    <Button
       android:id="@+id/btnVocasEdit"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Edit"
       app:layout_constraintEnd_toEndOf="parent" />
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 
-  <Button
-    android:id="@+id/btnTest"
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewTable"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="테스트용 임시버튼" />
-
-  <TextView
-    android:id="@+id/tvTmp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="vocas fragment" />
+    android:layout_height="682dp" />
 
 </LinearLayout>

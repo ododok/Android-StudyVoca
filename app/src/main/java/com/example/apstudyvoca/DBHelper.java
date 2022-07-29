@@ -24,6 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
     db.execSQL("DROP TABLE IF EXISTS example");
     db.execSQL("CREATE TABLE example (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "word TEXT, meaning TEXT);" );
+    insert("Apple", "Pomme", "example");
+    insert("Cat", "Chat", "example");
     //this.db=db;//////////////////////[???]
     Log.d("db", "db & table 'example' is created.");
   }
@@ -47,10 +49,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
   //db의 테이블 리스트 (이름들)를 리턴해주는 메서드.
   public String[] listOfTables() {
-
     db = getWritableDatabase(); //포인트.테이블 이름을 얻을땐 db를 getWritableDatabase(); 로 읽기.
     Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
-
     int i=0;
     String[] arr = new String[numberOfTables()];
     while (cursor.moveToNext()) {
@@ -61,7 +61,6 @@ public class DBHelper extends SQLiteOpenHelper {
         arr[i++] = tableName;
       }
     }
-
     return arr;
   }
 
@@ -78,16 +77,26 @@ public class DBHelper extends SQLiteOpenHelper {
 
   //특정 테이블에 자료를 입력하는 insert
   public void insert(String word, String meaning, String tableName){
-
+    String sql = "INSERT INTO "+tableName+" (word, meaning) VALUES ('"+
+        word+"', '"+meaning+"');";
+    db = getWritableDatabase();
+    db.execSQL(sql);
+    db.close();
   }
 
   //특정 테이블에 몇 개의 raw(ligne/행)이 있는지 조회
   public int tableSize(String tableName){
-    return 0;
+    db = getReadableDatabase();
+    Cursor cursor = db.rawQuery("SELECT * FROM "+tableName+";",null);
+    int result = cursor.getCount();
+    db.close();
+    cursor.close();
+    return result;
   }
 
   //db의 특정 테이블에서 라인(행/레코드) 하나를 찾아주는 메서드
   public String[] findRaw(String tableName, int rawIndex){
+
     return null;
   }
 
