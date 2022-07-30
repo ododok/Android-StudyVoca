@@ -40,9 +40,12 @@ public class BottomFragmentVocas extends Fragment {
     //////
     btnTest = rootView.findViewById(R.id.btnTest);
     btnTest.setOnClickListener(v->{
-      int size = helper.tableSize("example");
-      Toast.makeText(getContext(), "size of table 'example':"+size, Toast.LENGTH_SHORT).show();
-
+      int nt = helper.numberOfTables();
+      String[] arr = helper.listOfTables();
+      for(int i=0; i<arr.length; i++){
+        Log.d("db", arr[i]);
+      }
+      Toast.makeText(getContext(), "테이블수 : "+nt, Toast.LENGTH_SHORT).show();
     });
 
     return rootView;
@@ -70,6 +73,7 @@ public class BottomFragmentVocas extends Fragment {
       adapter.setArrayData(new Table(sa2[i][0], Integer.parseInt(sa2[i][1])));
     }
     recyclerView.setAdapter(adapter);
+    //테이블 수가 8개를 넘어가면 마지막 테이블이 리사이클러뷰에 안 나오는 문제 있음.
   }
 
 
@@ -90,8 +94,10 @@ public class BottomFragmentVocas extends Fragment {
           //String값 검사한 뒤에 create table호출.
           String charsToRemove = "\n+ ×÷=/_<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
           listName = CharMatcher.anyOf(charsToRemove).removeFrom(listName);
+          //테이블이름이 숫자로 시작하면 입력 안 되는 문제 해결할 것.
           Log.d("log", "입력된값 : "+listName);
           helper.createTable(listName);
+          editTextMakeTable.setText(null);
         }
         initRecyclerView();
       });
