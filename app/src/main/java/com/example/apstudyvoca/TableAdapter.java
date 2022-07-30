@@ -1,10 +1,14 @@
 package com.example.apstudyvoca;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,27 +55,60 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
   }
 
   public class TableViewHolder extends RecyclerView.ViewHolder{
-    public CardView bookItem;
+    public CardView tableItem;
     public TextView textViewTableName, textViewNumberRaw;
+    public ImageView imageViewEditTable;
+    LinearLayout linearLayoutTable;
+    boolean editTableIcon = false; //false ==invisible, true==visible
+
+    //QueryTable액티비티 띄우는 코드 필요없나벼
+//    public static final int CODE_TABLEVIEWHOLDER_TO_QUERYTABLE = 102;
+//    public static final int CODE_QUERYTABLE_TO_TABLEVIEWHOLDER = 201;
 
 
     public TableViewHolder(Context context, @NonNull View itemView) {
       super(itemView);
-      bookItem = itemView.findViewById(R.id.bookItem);
+      tableItem = itemView.findViewById(R.id.tableItem);
       textViewTableName = itemView.findViewById(R.id.textViewTableName);
       textViewNumberRaw = itemView.findViewById(R.id.textViewNumberRaw);
+      imageViewEditTable = itemView.findViewById(R.id.imageViewEditTable);
+      linearLayoutTable = itemView.findViewById(R.id.linearLayoutTable);
+
 
       //click event (normal click)
-      bookItem.setOnClickListener(v->{
-        Toast.makeText(context, textViewTableName.getText().toString(),
-            Toast.LENGTH_SHORT).show();
+      tableItem.setOnClickListener(v->{
+        if(editTableIcon==true) {
+          imageViewEditTable.setVisibility(View.INVISIBLE);
+          linearLayoutTable.setBackgroundColor(Color.WHITE);
+          editTableIcon = false;
+        } else {
+          Toast.makeText(context, textViewTableName.getText().toString(),
+              Toast.LENGTH_SHORT).show();
+
+          //fragment query table - 테이블 내부 단어목록 조회 activity 띄우기
+          //(QueryTable.java & activity_query_table.xml)
+          Intent intent = new Intent(context, QueryTable.class);
+          intent.putExtra("tableName", textViewTableName.getText().toString());
+          context.startActivity(intent);
+
+        }
       });
 
       //Long click event
-      bookItem.setOnLongClickListener(v->{
+      tableItem.setOnLongClickListener(v->{
         //edit ou delete 창이 뜨게 만들고 싶다.
-
+        imageViewEditTable.setVisibility(View.VISIBLE);
+        linearLayoutTable.setBackgroundColor(Color.LTGRAY);
+        editTableIcon = true;
         return true;
+      });
+
+      imageViewEditTable.setOnClickListener(v->{
+        if(editTableIcon == true){
+          Toast.makeText(context, "edit아이콘 눌림",Toast.LENGTH_SHORT).show();
+          //여기에 table의 이름수정과 삭제를 할 수 있는 dialog를 띄울 것.
+
+        }
       });
 
     }

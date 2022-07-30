@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+
+
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbarQueryTable"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:subtitleTextColor="?attr/actionMenuTextColor"
+    app:titleTextColor="?attr/actionMenuTextColor" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+      android:id="@+id/button2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:text="Button" />
+  </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewWords0"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+
+</LinearLayout>

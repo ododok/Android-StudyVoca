@@ -2,13 +2,19 @@ package com.example.apstudyvoca;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,12 +27,14 @@ import com.google.common.base.CharMatcher;
 public class BottomFragmentVocas extends Fragment {
   DBHelper helper;
   TextView editTextMakeTable;
-  Button btnVocasMakeTable, btnVocasEdit;
+  Button btnVocasMakeTable;
   Button btnTest;
   View dialogMakeTable;
   ViewGroup rootView;
   RecyclerView recyclerView;
   TableAdapter adapter;
+
+
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,7 +45,10 @@ public class BottomFragmentVocas extends Fragment {
     initDb();
     initRecyclerView();
 
-    //////
+
+
+
+    ////// 테스트 버튼
     btnTest = rootView.findViewById(R.id.btnTest);
     btnTest.setOnClickListener(v->{
       int nt = helper.numberOfTables();
@@ -52,6 +63,9 @@ public class BottomFragmentVocas extends Fragment {
 
   }//onCreateView
 
+
+
+
   private void initRecyclerView() {
     recyclerView = rootView.findViewById(R.id.recyclerViewTable);
     LinearLayoutManager layoutManager =
@@ -61,23 +75,23 @@ public class BottomFragmentVocas extends Fragment {
     adapter = new TableAdapter();
     int numTable = helper.numberOfTables();
 
-    //테이블 이름 리스트를 String형 배열에 리턴받는다.
+    //테이블 이름 리스트를 String형 배열에 리턴받는다. (테이블은 테이블 이름이 고유의 PK처럼 작동)
     //각각의 테이블별 raw수도 리턴받는다.
     //고로 String[n][2]; 이면 될 것 같다. n은 테이블 개수.
-
     String[] sa1 = helper.listOfTables();
     String[][] sa2 = new String[numTable][2];
     for(int i=0; i<numTable; i++){
-      sa2[i][0] = sa1[i];
-      sa2[i][1] = String.valueOf(helper.tableSize(sa1[i]));//작동하나? ca marche vraiment?
+      sa2[i][0] = sa1[i]; //table name
+      sa2[i][1] = String.valueOf(helper.tableSize(sa1[i]));//row개수작동하나? ca marche vraiment?
       adapter.setArrayData(new Table(sa2[i][0], Integer.parseInt(sa2[i][1])));
     }
     recyclerView.setAdapter(adapter);
-    //테이블 수가 8개를 넘어가면 마지막 테이블이 리사이클러뷰에 안 나오는 문제 있음.
+
   }
 
 
   private void initDb() {
+
     helper = new DBHelper(getContext());
 
     btnVocasMakeTable = rootView.findViewById(R.id.btnVocasMakeTable);
@@ -106,11 +120,23 @@ public class BottomFragmentVocas extends Fragment {
       adb.show();
     });
 
-
-    btnVocasEdit = rootView.findViewById(R.id.btnVocasEdit);
-    btnVocasEdit.setOnClickListener(v->{
-
-    });
+    //db example
+    helper.insert("Apple", "Pomme", "example");
+    helper.insert("Cat", "Chat", "example");
+    helper.insert("Winter", "Hiver", "example");
+    helper.insert("Spring", "Printemps", "example");
+    helper.insert("Summer", "Été", "example");
+    helper.insert("Winter", "Hiver", "example");
+    helper.insert("Car", "Voiture", "example");
+    helper.insert("Dog", "Chien", "example");
+    helper.insert("Autumn", "Automne", "example");
+    helper.insert("Book", "Livre", "example");
+    helper.insert("Computer", "Ordinateur", "example");
+    helper.insert("Airplane", "Avion", "example");
+    helper.insert("Ship", "Bateau", "example");
+    helper.insert("Squirrel", "Écureuil", "example");
+    helper.insert("Deer", "Cerf, Biche", "example");
+    helper.insert("Ant", "Fourmi", "example");
 
   }
 
