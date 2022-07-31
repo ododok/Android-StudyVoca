@@ -78,7 +78,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
   //특정 테이블에 자료를 입력하는 insert //insert a record(row) in a specific table.
   public boolean insert(String word, String meaning, String tableName){
-
     //cas redondance : Overlap case : 중복일 때 :
     String sql = "SELECT word FROM "+tableName+";";
     SQLiteDatabase db = getReadableDatabase();
@@ -90,14 +89,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return false; //<--S'il y a le meme mot, retourne false et finit cette methode.
       }
     }
-
     //Non-Overlap case --> insert the word.
     db = getWritableDatabase();
     sql = "INSERT INTO "+tableName+" (word, meaning) VALUES ('"+
         word+"', '"+meaning+"');";
-
     db.execSQL(sql);
-
     return true; //if the inserting is completed, return true.
   }
 

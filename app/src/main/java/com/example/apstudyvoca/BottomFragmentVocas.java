@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.common.base.CharMatcher;
 
@@ -48,15 +47,13 @@ public class BottomFragmentVocas extends Fragment {
 
 
 
-    ////// 테스트 버튼
+    ////// 테스트 버튼 test button
     btnTest = rootView.findViewById(R.id.btnTest);
     btnTest.setOnClickListener(v->{
-      int nt = helper.numberOfTables();
       String[] arr = helper.listOfTables();
       for(int i=0; i<arr.length; i++){
         Log.d("db", arr[i]);
       }
-      Toast.makeText(getContext(), "테이블수 : "+nt, Toast.LENGTH_SHORT).show();
     });
 
     return rootView;
@@ -108,7 +105,7 @@ public class BottomFragmentVocas extends Fragment {
           //String값 검사한 뒤에 create table호출.
           String charsToRemove = "\n+ ×÷=/_<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
           listName = CharMatcher.anyOf(charsToRemove).removeFrom(listName);
-          //테이블이름이 숫자로 시작하면 입력 안 되는 문제 해결할 것.
+          //ToDo 테이블이름이 숫자로 시작하면 입력 안 되는 문제 해결할 것.
           Log.d("log", "입력된값 : "+listName);
           helper.createTable(listName);
           editTextMakeTable.setText(null);

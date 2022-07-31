@@ -14,6 +14,9 @@
     android:theme="@style/Theme.APStudyVoca"
     tools:targetApi="31">
     <activity
+      android:name=".AddWord"
+      android:exported="false" />
+    <activity
       android:name=".QueryTable"
       android:exported="false" />
     <activity

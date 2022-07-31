@@ -82,8 +82,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
           linearLayoutTable.setBackgroundColor(Color.WHITE);
           editTableIcon = false;
         } else {
-          Toast.makeText(context, textViewTableName.getText().toString(),
-              Toast.LENGTH_SHORT).show();
 
           //fragment query table - 테이블 내부 단어목록 조회 activity 띄우기
           //(QueryTable.java & activity_query_table.xml)
@@ -105,7 +103,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
 
       imageViewEditTable.setOnClickListener(v->{
         if(editTableIcon == true){
-          Toast.makeText(context, "edit아이콘 눌림",Toast.LENGTH_SHORT).show();
+          Toast.makeText(context, "edit아이콘 눌림 (Toast:TableAdapter.java)",Toast.LENGTH_SHORT).show();
           //여기에 table의 이름수정과 삭제를 할 수 있는 dialog를 띄울 것.
 
         }

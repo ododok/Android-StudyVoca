@@ -70,6 +70,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
       linearLayoutWord.setOnClickListener(v->{
         Toast.makeText(context, textViewWord.getText().toString(), Toast.LENGTH_SHORT).show();
         // 단어 조회기능 들어가야 함. 조회시 수정 삭제 가능하도록
+
       });
     }
 
