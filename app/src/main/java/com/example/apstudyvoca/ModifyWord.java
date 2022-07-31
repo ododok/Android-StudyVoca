@@ -18,7 +18,7 @@ public class ModifyWord extends AppCompatActivity {
   Toolbar toolbar;
   Button btnCancelModifyWord, btnModifyWord;
   EditText editTextModifyWord, editTextModifyMeaning;
-  String tableName;
+  String tableName, word, meaning;
   int _id;
   DBHelper helper;
 
@@ -28,12 +28,31 @@ public class ModifyWord extends AppCompatActivity {
     setContentView(R.layout.activity_modify_word);
 
     Intent intent = getIntent();
-    _id = intent.getIntExtra("_id", -1);
     tableName = intent.getStringExtra("tableName");
+    _id = intent.getIntExtra("_id", -1);
+    word = intent.getStringExtra("word");
+    meaning = intent.getStringExtra("meaning");
 
     helper = new DBHelper(this);
     //dbhelper에 modify 기능을 만들어야 함. 파라미터로 테이블이름과 id를 넣고 자료를 찾도록.
     //테이블 이름을 전송받을 방법을 만들자.
+
+    editTextModifyWord = findViewById(R.id.editTextModifyWord);
+    editTextModifyMeaning = findViewById(R.id.editTextModifyMeaning);
+    editTextModifyWord.setText(word);
+    editTextModifyMeaning.setText(meaning);
+
+    //cancel button
+    btnCancelModifyWord = findViewById(R.id.btnCancelModifyWord);
+    btnCancelModifyWord.setOnClickListener(v->{ finish(); });
+
+    btnModifyWord = findViewById(R.id.btnModifyWord);
+    btnModifyWord.setOnClickListener(v->{
+      helper.modifyRow(tableName, _id,
+          editTextModifyWord.getText().toString(),
+          editTextModifyMeaning.getText().toString());
+      finish();
+    });
 
 
     //toolbar

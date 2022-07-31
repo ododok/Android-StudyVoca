@@ -6,6 +6,15 @@
   android:layout_height="match_parent"
   tools:context=".AddWord">
 
+  <EditText
+    android:id="@+id/editTextModifyWord2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Word"
+    android:maxLength="140"
+    android:singleLine="true"
+    android:textSize="16sp" />
+
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbarModifyWord"
     android:layout_width="match_parent"
@@ -20,9 +29,9 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="40dp"
+    android:layout_marginStart="30dp"
     android:layout_marginTop="100dp"
-    android:layout_marginEnd="40dp"
+    android:layout_marginEnd="30dp"
     android:layout_marginBottom="390dp"
     android:background="#3BBFBFBF"
     android:orientation="vertical"

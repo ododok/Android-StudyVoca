@@ -117,6 +117,21 @@ public class DBHelper extends SQLiteOpenHelper {
     return words;
   }
 
+  //Modify the values of a row //modifier les valeurs d'une ligne //행 하나의 값 수정.
+  public void modifyRow(String tableName, int _id, String word, String meaning){
+    SQLiteDatabase db = getWritableDatabase();
+    String sql = "UPDATE "+tableName+" SET word = '"+word+"', "
+        +"meaning = '"+meaning+"' WHERE _id="+_id+";";
+    db.execSQL(sql);
+  }
+
+  //Delete a row //supprimer une ligne //행 하나 지우기
+  public void deleteRow(String tableName, int _id){
+    SQLiteDatabase db = getWritableDatabase();
+    String sql = "DELETE FROM "+tableName+" WHERE _id="+_id+";";
+    db.execSQL(sql);
+  }
+
   //db의 특정 테이블에서 라인(행/레코드) 하나를 찾아주는 메서드
   public String[] findRow(String tableName, int _id){
 
@@ -132,6 +147,8 @@ public class DBHelper extends SQLiteOpenHelper {
   public void deleteTable(String tableName){
 
   }
+
+
 
 
 

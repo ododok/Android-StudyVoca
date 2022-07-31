@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.io.Console;
 import java.util.ArrayList;
 
-public class QueryTable extends AppCompatActivity{
+public class QueryTable extends AppCompatActivity {
 
   String tableName;
   Toolbar toolbar;

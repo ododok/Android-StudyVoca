@@ -75,6 +75,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
       linearLayoutTable = itemView.findViewById(R.id.linearLayoutTable);
 
 
+
       //click event (normal click)
       tableItem.setOnClickListener(v->{
         if(editTableIcon==true) {
