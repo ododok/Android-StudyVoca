@@ -47,6 +47,7 @@ public class BottomFragmentVocas extends Fragment {
 
 
 
+
     ////// 테스트 버튼 test button
     btnTest = rootView.findViewById(R.id.btnTest);
     btnTest.setOnClickListener(v->{

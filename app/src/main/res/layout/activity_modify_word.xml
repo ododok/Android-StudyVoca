@@ -7,7 +7,7 @@
   tools:context=".AddWord">
 
   <androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbarAddWord"
+    android:id="@+id/toolbarModifyWord"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
@@ -32,7 +32,7 @@
     app:layout_constraintTop_toTopOf="parent">
 
     <EditText
-      android:id="@+id/editTextAddWord"
+      android:id="@+id/editTextModifyWord"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="10dp"
@@ -44,7 +44,7 @@
       android:textSize="16sp" />
 
     <EditText
-      android:id="@+id/editTextAddMeaning"
+      android:id="@+id/editTextModifyMeaning"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="10dp"
@@ -62,7 +62,7 @@
       android:orientation="horizontal">
 
       <Button
-        android:id="@+id/btnCancelWord"
+        android:id="@+id/btnCancelModifyWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -72,14 +72,14 @@
         android:text="CANCEL" />
 
       <Button
-        android:id="@+id/btnAddWord"
+        android:id="@+id/btnModifyWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_weight="1"
-        android:backgroundTint="#27A62C"
-        android:text="ADD" />
+        android:backgroundTint="#FF8F00"
+        android:text="Modify" />
     </LinearLayout>
 
   </LinearLayout>

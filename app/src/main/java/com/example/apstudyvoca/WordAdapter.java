@@ -1,6 +1,7 @@
 package com.example.apstudyvoca;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,16 @@ import java.util.ArrayList;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
   private ArrayList<Word> items;
+  private String tableName;
 
-  public WordAdapter() {
+  public WordAdapter(String tableName) {
     items = new ArrayList<>();
+    this.tableName =tableName;
   }
 
-  public WordAdapter(ArrayList<Word> items) {
+  public WordAdapter(ArrayList<Word> items, String tableName) {
     this.items = items;
+    this.tableName = tableName;
   }
 
   @NonNull
@@ -66,11 +70,22 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         textViewWordId = itemView.findViewById(R.id.textViewWordId);
         linearLayoutWord = itemView.findViewById(R.id.linearLayoutWord);
 
+
+
         //click event
       linearLayoutWord.setOnClickListener(v->{
-        Toast.makeText(context, textViewWord.getText().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, textViewWord.getText().toString(), Toast.LENGTH_SHORT).show();
         // 단어 조회기능 들어가야 함. 조회시 수정 삭제 가능하도록
+        Intent intent = new Intent(context, ModifyWord.class);
+        intent.putExtra("_id", Integer.parseInt(textViewWordId.getText().toString()));
+        intent.putExtra("tableName", tableName);
+        context.startActivity(intent);
+      });
 
+      //Long click Listener event
+      linearLayoutWord.setOnLongClickListener(v->{
+
+        return false;
       });
     }
 

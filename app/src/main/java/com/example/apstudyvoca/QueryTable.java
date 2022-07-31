@@ -1,11 +1,11 @@
 package com.example.apstudyvoca;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,14 +20,13 @@ import android.widget.Toast;
 import java.io.Console;
 import java.util.ArrayList;
 
-public class QueryTable extends AppCompatActivity {
+public class QueryTable extends AppCompatActivity{
 
   String tableName;
   Toolbar toolbar;
   RecyclerView recyclerViewWords;
   WordAdapter wordAdapter;
   DBHelper helper;
-
 
 
   @Override
@@ -63,7 +62,7 @@ public class QueryTable extends AppCompatActivity {
         new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
     recyclerViewWords.setLayoutManager(layoutManager);
     ArrayList<Word> words = helper.getWordsFromTable(tableName);
-    wordAdapter = new WordAdapter(words);
+    wordAdapter = new WordAdapter(words, tableName);
     recyclerViewWords.setAdapter(wordAdapter);
   }
 
@@ -74,12 +73,13 @@ public class QueryTable extends AppCompatActivity {
       case android.R.id.home: //뒤로가기버튼 //back button
         finish();
         return true;
+
       case R.id.itemAdd: //상단 툴바 단어 입력 버튼 (+) //add a word event
         Intent intent = new Intent(getApplicationContext(), AddWord.class);
         intent.putExtra("tableName", tableName);
         startActivity(intent);
-
         return true;
+
       case R.id.itemStudy:  //List (단어장) 스터디 버튼 (같은 버튼을 더 눈에 띄는 곳에 넣을 예정)
         Toast.makeText(this, "study item 클릭", Toast.LENGTH_SHORT).show();
         return true;
@@ -88,7 +88,8 @@ public class QueryTable extends AppCompatActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  @Override
+
+  @Override //(top) tool bar inflation
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.query_table_top_menu, menu);
     return super.onCreateOptionsMenu(menu);
@@ -96,11 +97,11 @@ public class QueryTable extends AppCompatActivity {
   }
 
 
-
   @Override  //refresh.새로고침. 다른액티비티가 finish()되서 여기로 다시 돌아오면 실행될 코드.
   protected void onPostResume() {
     super.onPostResume();
     initRecyclerView();
   }
+
 
 }//class QueryTable
