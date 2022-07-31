@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,7 +30,6 @@ public class QueryTable extends AppCompatActivity {
 
 
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {//
     super.onCreate(savedInstanceState);//
@@ -47,6 +47,8 @@ public class QueryTable extends AppCompatActivity {
     helper = new DBHelper(this); //activity니까 this. fragment였으면 getContext().
 
     initRecyclerView();
+
+
 
 
   }//onCreate
@@ -91,6 +93,14 @@ public class QueryTable extends AppCompatActivity {
     getMenuInflater().inflate(R.menu.query_table_top_menu, menu);
     return super.onCreateOptionsMenu(menu);
     //return true;
+  }
+
+
+
+  @Override  //refresh.새로고침. 다른액티비티가 finish()되서 여기로 다시 돌아오면 실행될 코드.
+  protected void onPostResume() {
+    super.onPostResume();
+    initRecyclerView();
   }
 
 }//class QueryTable

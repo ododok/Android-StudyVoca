@@ -137,5 +137,10 @@ public class BottomFragmentVocas extends Fragment {
 
   }
 
+  @Override //refresh.
+  public void onResume() {
+    super.onResume();
+    initRecyclerView();
+  }
 
 }//class BottomFragmentVoca
