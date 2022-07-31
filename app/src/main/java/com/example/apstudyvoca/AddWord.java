@@ -4,13 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,7 +30,7 @@ public class AddWord extends AppCompatActivity {
     helper = new DBHelper(this);
 
     //toolbar
-    toolbar = findViewById(R.id.toolbarAddWord);
+    toolbar = findViewById(R.id.toolbarModifyTable);
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);// back button
     getSupportActionBar().setTitle("\uD83D\uDCC2 "+tableName); //title

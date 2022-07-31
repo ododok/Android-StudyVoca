@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="7dp"
-        android:layout_marginRight="7dp"
+        android:layout_marginRight="0dp"
         android:layout_marginBottom="7dp"
         android:layout_weight="8"
         android:orientation="vertical">
@@ -56,14 +56,27 @@
 
       </LinearLayout>
 
-      <ImageView
-        android:id="@+id/imageViewEditTable"
-        android:layout_width="0dp"
+      <LinearLayout
+        android:id="@+id/layoutEditTable"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginRight="6dp"
-        android:layout_weight="1"
-        android:visibility="invisible"
-        app:srcCompat="@drawable/ic_baseline_mode_edit_24" />
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <ImageView
+          android:id="@+id/imageViewEditTable"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:visibility="visible"
+          app:srcCompat="@drawable/ic_baseline_mode_edit_24" />
+
+        <ImageView
+          android:id="@+id/imageViewDeleteTable"
+          android:layout_width="30dp"
+          android:layout_height="30dp"
+          android:visibility="visible"
+          app:srcCompat="@android:drawable/ic_delete" />
+      </LinearLayout>
 
     </LinearLayout>
   </androidx.cardview.widget.CardView>

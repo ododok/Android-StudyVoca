@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
   Context context;
 
   public DBHelper(@Nullable Context context) {
-    super(context, "vocadb", null, 1); //make "db".
+    super(context, "vocadb", null, 1); //makes db.
     this.context = context;
   }
 
@@ -28,10 +28,10 @@ public class DBHelper extends SQLiteOpenHelper {
   public void onCreate(SQLiteDatabase db) {
     db.execSQL("CREATE TABLE example (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "word TEXT, meaning TEXT);" );
-
     Log.d("db", "db & table 'example' is created.");
     //여기 db.close()하지말것.
   }
+
 
   @Override //테이블 업그레이드. 삭제 혹은 다시 생성.
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -39,7 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
     onCreate(db);
   }
 
-  //db의 테이블 개수를 리턴해주는 메서드
+
+  //Nombre de table dans le DB  // db의 테이블 개수를 리턴
   public int numberOfTables(){
     String sql = "SELECT * FROM sqlite_master WHERE " +
         "type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence';";
@@ -50,7 +51,8 @@ public class DBHelper extends SQLiteOpenHelper {
     return count;
   }
 
-  //db의 테이블 리스트 (이름들)를 리턴해주는 메서드. //the names of all tables
+
+  //db의 테이블 리스트 (이름들)를 리턴해주는 메서드. // names of all the tables in the DB
   public String[] listOfTables() {
     SQLiteDatabase db = getWritableDatabase(); //포인트.테이블 이름을 얻을땐 db를 getWritableDatabase(); 로 읽기.
     Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
@@ -77,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
   }
 
   //특정 테이블에 자료를 입력하는 insert //insert a record(row) in a specific table.
+  //if it returns true == success,  returns false == fail
   public boolean insert(String word, String meaning, String tableName){
     //cas redondance : Overlap case : 중복일 때 :
     String sql = "SELECT word FROM "+tableName+";";
@@ -86,27 +89,29 @@ public class DBHelper extends SQLiteOpenHelper {
       if(word.equals(cursor.getString(0))){
         Log.d("db", "[insert Method error] There's same word : "+word);
         //Toast.makeText(context,"Word already exist", Toast.LENGTH_SHORT).show();
-        return false; //<--S'il y a le meme mot, retourne false et finit cette methode.
+        return false; //[erreur] S'il y a le meme mot, retourne false et finit cette methode.
       }
     }
-    //Non-Overlap case --> insert the word.
+    //Non-redondance --> Inserer le data //Non-Overlap case --> insert the word.
     db = getWritableDatabase();
     sql = "INSERT INTO "+tableName+" (word, meaning) VALUES ('"+
         word+"', '"+meaning+"');";
     db.execSQL(sql);
-    return true; //if the inserting is completed, return true.
+    return true; //if the inserting is done without error, return true.
   }
 
   //특정 테이블에 몇 개의 row(ligne/행)이 있는지 조회
+  //Nombre de ligne dans un table spécifique
   public int tableSize(String tableName){
     SQLiteDatabase db = getReadableDatabase();
     Cursor cursor = db.rawQuery("SELECT * FROM "+tableName+";",null);
     int result = cursor.getCount();
-
     return result;
   }
 
 
+  //특정 테이블의 자료를 <Word>타입 리스트로 리턴.
+  //Retourne un ArrayList<Word> d'une table spécifique
   public ArrayList<Word> getWordsFromTable(String tableName){
     ArrayList<Word> words = new ArrayList<>();
     SQLiteDatabase db = getReadableDatabase();
@@ -139,13 +144,17 @@ public class DBHelper extends SQLiteOpenHelper {
   }
 
   //테이블의 이름을 변경해주는 메서드
-  public void editTableName(String tableName){
-
+  public void editTableName(String oldTableName, String newTableName){
+    String sql = "ALTER TABLE "+oldTableName+" RENAME TO "+newTableName+";";
+    SQLiteDatabase db = getWritableDatabase();
+    db.execSQL(sql);
   }
 
   //테이블을 삭제하는 메서드
   public void deleteTable(String tableName){
-
+    String sql = "DROP TABLE "+tableName+";";
+    SQLiteDatabase db = getWritableDatabase();
+    db.execSQL(sql);
   }
 
 

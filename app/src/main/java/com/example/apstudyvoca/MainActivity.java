@@ -52,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
     });
   }
 
-
+  @Override
+  public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+    initBottomFragments(); //무언가 뷰를 refresh할 수 있는, 뷰를 띄워주는 메서드를 넣는 자리.
+  }
 
 }//class MainActivity

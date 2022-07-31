@@ -112,34 +112,42 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
           AlertDialog.Builder adb = new AlertDialog.Builder(context);
           adb.setTitle(textViewWord.getText().toString());
           adb.setMessage("Do you really want to delete?");
-          adb.setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-              DBHelper helper = new DBHelper(context);
-              helper.deleteRow(tableName, Integer.parseInt(textViewWordId.getText().toString()));
 
-              //아이템을 DB에서 삭제한 후에도 ArrayList에서도 삭제해야 한다.
-              items.removeIf(w -> w.get_id() == Integer.parseInt(textViewWordId.getText().toString()));
+          //DELETE button event
+          adb.setPositiveButton("DELETE", (dialog, which) -> {
+            DBHelper helper = new DBHelper(context);
+            helper.deleteRow(tableName, Integer.parseInt(textViewWordId.getText().toString()));
 
-              //아이템을 ArrayList에서 삭제했으면, 리사이클러뷰의 삭제대상 표시 색이나 아이콘도
-              //다시 숨겨줘야 한다.
-              imageViewDeleteWord.setVisibility(View.INVISIBLE);
-              linearLayoutWord.setBackgroundColor(Color.TRANSPARENT);
-              deleteWordIconVisible = false;
+            //아이템을 DB에서 삭제한 후에도 ArrayList에서도 삭제해야 한다.
+            items.removeIf(w -> w.get_id() == Integer.parseInt(textViewWordId.getText().toString()));
 
-              //이 과정을 마쳤으면 뷰를 다시 REFRESH 한다.
-              //이 메서드는 dialog에서 액티비티로 변경사항이 있다는 것을 전달한다.
-              notifyDataSetChanged();
-            }
-          });//todo
-          adb.setNegativeButton("CANCEL", null);
+            //아이템을 ArrayList에서 삭제했으면, 리사이클러뷰의 삭제대상 표시 색이나 아이콘도
+            //다시 숨겨줘야 한다.
+            imageViewDeleteWord.setVisibility(View.INVISIBLE);
+            linearLayoutWord.setBackgroundColor(Color.TRANSPARENT);
+            deleteWordIconVisible = false;
+
+            //이 과정을 마쳤으면 뷰를 다시 REFRESH 한다.
+            //이 메서드는 dialog에서 액티비티로 변경사항이 있다는 것을 전달한다.
+            notifyDataSetChanged();
+          });
+
+          //Cancel button event
+          adb.setNegativeButton("CANCEL", (dialog, which)->{
+            //유저가 삭제하지 않겠다고 했으니까, Word아이템의 삭제대상 표시도 지운다.
+            imageViewDeleteWord.setVisibility(View.INVISIBLE);
+            linearLayoutWord.setBackgroundColor(Color.TRANSPARENT);
+            deleteWordIconVisible = false;
+
+            //이 과정을 마쳤으면 뷰를 다시 REFRESH 한다.
+            //이 메서드는 dialog에서 액티비티로 변경사항이 있다는 것을 전달한다.
+            notifyDataSetChanged();
+          });
           adb.show();
         }
       });
 
-    }
-
-
+    }//WordViewHolder
 
 
   }//class WordViewHolder

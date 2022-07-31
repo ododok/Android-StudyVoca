@@ -2,8 +2,8 @@ package com.example.apstudyvoca;
 
 public class Table {
 
-  private String tableName;
-  private int numberOfRaw;
+  String tableName;
+  int numberOfRaw;
 
   public Table(String tableName, int numberOfRaw) {
     this.tableName = tableName;

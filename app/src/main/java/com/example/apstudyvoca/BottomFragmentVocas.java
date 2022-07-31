@@ -2,22 +2,17 @@ package com.example.apstudyvoca;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.common.base.CharMatcher;
@@ -25,7 +20,7 @@ import com.google.common.base.CharMatcher;
 
 public class BottomFragmentVocas extends Fragment {
   DBHelper helper;
-  TextView editTextMakeTable;
+  EditText editTextMakeTable;
   Button btnVocasMakeTable;
   Button btnTest;
   View dialogMakeTable;
@@ -74,7 +69,7 @@ public class BottomFragmentVocas extends Fragment {
     int numTable = helper.numberOfTables();
 
     //테이블 이름 리스트를 String형 배열에 리턴받는다. (테이블은 테이블 이름이 고유의 PK처럼 작동)
-    //각각의 테이블별 raw수도 리턴받는다.
+    //각각의 테이블별 row수도 리턴받는다.
     //고로 String[n][2]; 이면 될 것 같다. n은 테이블 개수.
     String[] sa1 = helper.listOfTables();
     String[][] sa2 = new String[numTable][2];
@@ -100,7 +95,12 @@ public class BottomFragmentVocas extends Fragment {
 
       //버튼리스너. "ADD" 란 문자열은 차후에 언어별로 다르게 변경
       adb.setPositiveButton("ADD", (dialog, which) -> {
+        //todo 언제나 주의할 것 ************************************
         editTextMakeTable = dialogMakeTable.findViewById(R.id.editTextMakeTable);//인플레이트 주의!
+        //dialog의 뷰의 요소를 참조reference할 때는 dialog 뷰에서 찾아야 한다.
+        //dialogMakeTable.findViewById 라고 한 것에 주의하자. rootView.findViewById등이 아니라.
+        //**************************************
+
         String listName = editTextMakeTable.getText().toString();
         if(listName.length()>=1){
           //String값 검사한 뒤에 create table호출.
@@ -118,7 +118,7 @@ public class BottomFragmentVocas extends Fragment {
       adb.show();
     });
 
-    //db example
+    //db examples
     helper.insert("Apple", "Pomme", "example");
     helper.insert("Cat", "Chat", "example");
     helper.insert("Winter", "Hiver", "example");
@@ -138,7 +138,7 @@ public class BottomFragmentVocas extends Fragment {
 
   }
 
-  @Override //refresh.
+  @Override //refresh.  //Actualiser
   public void onResume() {
     super.onResume();
     initRecyclerView();

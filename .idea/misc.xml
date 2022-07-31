@@ -5,9 +5,13 @@
       <map>
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_add_word.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_main.xml" value="0.2857142857142857" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_modify_table.xml" value="0.20592705167173253" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_modify_word.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_query_table.xml" value="0.18857142857142858" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/dialog_make_table.xml" value="0.2857142857142857" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/dialog_modif_table.xml" value="0.20542046605876393" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/dialog_modify_table_name.xml" value="0.2857142857142857" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/dialog_modify_tabname.xml" value="0.232421875" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_info.xml" value="0.23052536231884058" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_search.xml" value="0.23052536231884058" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_vocas.xml" value="0.18857142857142858" />
