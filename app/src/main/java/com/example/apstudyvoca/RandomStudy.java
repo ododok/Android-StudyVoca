@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //fragment_random_word_view.xml과 연결된 파일.
 /*
@@ -26,10 +31,11 @@ public class RandomStudy extends AppCompatActivity {
   String tableName;
   Toolbar toolbar;
   ViewPager2 viewPager;
-
   View viewPrevious, viewNext;
+  ProgressBar progressBar;
+  TextView tvProgress;
 
-
+  @SuppressLint("ClickableViewAccessibility")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);//
@@ -39,6 +45,13 @@ public class RandomStudy extends AppCompatActivity {
     tableName = intent.getStringExtra("tableName");
     DBHelper helper = new DBHelper(this);
     items = helper.getWordsFromTable(tableName);
+
+    Collections.shuffle(items); //random 기능.
+    //랜덤기능은 RandomAdapter 에서 하면 안 되고 여기서 랜덤으로 해줘야 한다.
+    //왜냐면 랜덤어댑터에서는 유저가 뷰에서 선택한 포지션을 인덱스로 하여 아이템을 선택하는데
+    //(정확한 수학적 이유는 모르겠지만) 랜덤으로 돌리면 중복으로 나타나는 아이템과 누락되는
+    //아이템이 생겨난다. 고로 화면으로 뿌리는 Adapter 에 넘기기 전인 여기서 ArrayList를
+    //랜덤으로 한 번 섞어줘야 한다.
 
     toolbar = findViewById(R.id.toolbarRandomStudy);
     setSupportActionBar(toolbar);
@@ -52,10 +65,44 @@ public class RandomStudy extends AppCompatActivity {
     viewPrevious.setOnClickListener(v->{ //이전 뷰 보기
       viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
     });
+    viewPrevious.setOnTouchListener((v, event) -> {
+      switch(event.getAction()){
+        case MotionEvent.ACTION_UP:
+          viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
+          return true;
+      }
+      return false;
+    });
+
     viewNext = findViewById(R.id.viewNext);
     viewNext.setOnClickListener(v->{ //다음 뷰 보기
       viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
     });
+    viewNext.setOnTouchListener((v, event)->{
+      switch(event.getAction()){
+        case MotionEvent.ACTION_UP:
+          viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+          return true;
+      }
+      return false;
+    });
+
+
+
+    //progress bar
+    progressBar = findViewById(R.id.progressBar);
+    tvProgress = findViewById(R.id.tvProgress);
+    //페이지가 바뀌면 콜백으로 자동호출되는 익명메서드.
+    viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback(){
+      @Override
+      public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        tvProgress.setText( (position+1)+" / "+items.size());
+        progressBar.setMax(items.size()-1);
+        progressBar.setProgress(position);
+      }
+    });
+
 
   }//onCreate
 

@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class QueryTable extends AppCompatActivity {
   RecyclerView recyclerViewWords;
   WordAdapter wordAdapter;
   DBHelper helper;
+  Button buttonAddWord, buttonStudy;
 
 
   @Override
@@ -47,7 +50,15 @@ public class QueryTable extends AppCompatActivity {
 
     initRecyclerView();
 
+    buttonAddWord = findViewById(R.id.buttonAddWord);
+    buttonAddWord.setOnClickListener(v->{
+      addItem();
+    });
 
+    buttonStudy = findViewById(R.id.buttonStudy);
+    buttonStudy.setOnClickListener(v->{
+      study();
+    });
 
 
   }//onCreate
@@ -75,19 +86,32 @@ public class QueryTable extends AppCompatActivity {
         return true;
 
       case R.id.itemAdd: //상단 툴바 단어 입력 버튼 (+) //add a word event
-        Intent intent = new Intent(getApplicationContext(), AddWord.class);
-        intent.putExtra("tableName", tableName);
-        startActivity(intent);
+        addItem();
         return true;
 
       case R.id.itemStudy:  //List (단어장) 스터디 버튼 (같은 버튼을 더 눈에 띄는 곳에 넣을까?)
-        Intent intent2 = new Intent(getApplicationContext(), RandomStudy.class);
-        intent2.putExtra("tableName", tableName);
-        startActivity(intent2);
+        study();
         return true;
 
     }
     return super.onOptionsItemSelected(item);
+  }
+
+
+  public void addItem(){
+    Intent intent = new Intent(getApplicationContext(), AddWord.class);
+    intent.putExtra("tableName", tableName);
+    startActivity(intent);
+  }
+
+  public void study(){
+    if(helper.tableSize(tableName)>=1) {
+      Intent intent2 = new Intent(getApplicationContext(), RandomStudy.class);
+      intent2.putExtra("tableName", tableName);
+      startActivity(intent2);
+    }else{
+      Toast.makeText(getApplicationContext(),"There's no word on the list.", Toast.LENGTH_SHORT).show();
+    }
   }
 
 

@@ -22,7 +22,6 @@ public class BottomFragmentVocas extends Fragment {
   DBHelper helper;
   EditText editTextMakeTable;
   Button btnVocasMakeTable;
-  Button btnTest;
   View dialogMakeTable;
   ViewGroup rootView;
   RecyclerView recyclerView;
@@ -42,15 +41,6 @@ public class BottomFragmentVocas extends Fragment {
 
 
 
-
-    ////// 테스트 버튼 test button
-    btnTest = rootView.findViewById(R.id.btnTest);
-    btnTest.setOnClickListener(v->{
-      String[] arr = helper.listOfTables();
-      for(int i=0; i<arr.length; i++){
-        Log.d("db", arr[i]);
-      }
-    });
 
     return rootView;
 

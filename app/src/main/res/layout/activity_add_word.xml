@@ -20,67 +20,87 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="30dp"
-    android:layout_marginTop="100dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginBottom="390dp"
-    android:background="#3BBFBFBF"
     android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    tools:layout_editor_absoluteX="10dp"
+    tools:layout_editor_absoluteY="10dp">
 
-    <EditText
-      android:id="@+id/editTextAddWord"
+    <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="30dp"
-      android:layout_marginRight="10dp"
-      android:hint="Word"
-      android:maxLength="140"
-      android:singleLine="true"
-      android:textSize="16sp" />
+      android:layout_height="0dp"
+      android:layout_weight="1">
 
-    <EditText
-      android:id="@+id/editTextAddMeaning"
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:background="#3BBFBFBF"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="30dp">
+
+        <EditText
+          android:id="@+id/editTextAddWord"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="30dp"
+          android:layout_marginRight="10dp"
+          android:hint="Word"
+          android:maxLength="70"
+          android:singleLine="true"
+          android:textSize="16sp" />
+
+        <EditText
+          android:id="@+id/editTextAddMeaning"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginRight="10dp"
+          android:hint="Meaning"
+          android:maxLength="70"
+          android:singleLine="true"
+          android:textSize="16sp" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="30dp"
+          android:orientation="horizontal">
+
+          <Button
+            android:id="@+id/btnCancelWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#C86C6C6C"
+            android:text="CANCEL" />
+
+          <Button
+            android:id="@+id/btnAddWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#27A62C"
+            android:text="ADD" />
+        </LinearLayout>
+
+      </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginRight="10dp"
-      android:hint="Meaning"
-      android:maxLength="140"
-      android:singleLine="true"
-      android:textSize="16sp" />
+      android:layout_height="0dp"
+      android:layout_weight="1">
 
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginTop="30dp"
-      android:orientation="horizontal">
-
-      <Button
-        android:id="@+id/btnCancelWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:backgroundTint="#C86C6C6C"
-        android:text="CANCEL" />
-
-      <Button
-        android:id="@+id/btnAddWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:backgroundTint="#27A62C"
-        android:text="ADD" />
-    </LinearLayout>
+    </FrameLayout>
 
   </LinearLayout>
 

@@ -18,7 +18,6 @@ public class RandomWordView extends Fragment {
 
   TextView textViewRandomWord, textViewRandomMeaning;
   Word word;
-  ViewPager2 viewPager;
 
   public RandomWordView(Word word) {
     this.word = word;

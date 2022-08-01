@@ -17,6 +17,32 @@
 
   <LinearLayout
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ProgressBar
+      android:id="@+id/progressBar"
+      style="?android:attr/progressBarStyleHorizontal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginLeft="10dp"
+      android:layout_weight="17"
+      android:progressTint="#4CAF50" />
+
+    <TextView
+      android:id="@+id/tvProgress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="5dp"
+      android:layout_weight="1"
+      android:gravity="center_horizontal"
+      android:text="TextView"
+      android:textAlignment="center" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
@@ -32,7 +58,7 @@
       android:layout_height="match_parent"
       android:layout_marginTop="30dp"
       android:layout_marginBottom="30dp"
-      android:layout_weight="9"
+      android:layout_weight="10"
       android:clipChildren="false"
       android:clipToPadding="false"
       android:scaleType="fitXY" />

@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.google.common.base.CharMatcher;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -104,6 +105,18 @@ public class DBHelper extends SQLiteOpenHelper {
     //le nom d'une table ne peut pas avoir des caractères spéciaux.//테이블이름에 특수문자는 불가능
     String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
     tableName = CharMatcher.anyOf(charsToRemove).removeFrom(tableName);
+
+    //vérification de redondance  //테이블이름 중복체크.
+    String[] tables = listOfTables();
+    for(int i=0; i<tables.length; i++){
+      if(tableName.equals(tables[i])){
+        do{
+          Random rand = new Random();
+          tableName = tableName+rand.nextInt(10);
+        }while(tableName.equals(tables[i]));
+      }
+    }
+
     return tableName;
   }
 

@@ -16,15 +16,46 @@
     app:subtitleTextColor="?attr/actionMenuTextColor"
     app:titleTextColor="?attr/actionMenuTextColor" />
 
-  <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"/>
-
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerViewWords0"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="0dp"
+    android:layout_weight="15" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <Button
+        android:id="@+id/buttonAddWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:text="ADD" />
+
+      <Button
+        android:id="@+id/buttonStudy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="1"
+        android:text="Study" />
+    </LinearLayout>
+  </LinearLayout>
 
 
 </LinearLayout>

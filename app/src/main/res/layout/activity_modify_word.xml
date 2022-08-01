@@ -6,15 +6,6 @@
   android:layout_height="match_parent"
   tools:context=".AddWord">
 
-  <EditText
-    android:id="@+id/editTextModifyWord2"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Word"
-    android:maxLength="140"
-    android:singleLine="true"
-    android:textSize="16sp" />
-
   <androidx.appcompat.widget.Toolbar
     android:id="@+id/toolbarModifyWord"
     android:layout_width="match_parent"
@@ -29,67 +20,85 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="30dp"
-    android:layout_marginTop="100dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginBottom="390dp"
     android:background="#3BBFBFBF"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:orientation="vertical">
 
-    <EditText
-      android:id="@+id/editTextModifyWord"
+    <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="30dp"
-      android:layout_marginRight="10dp"
-      android:hint="Word"
-      android:maxLength="140"
-      android:singleLine="true"
-      android:textSize="16sp" />
+      android:layout_height="0dp"
+      android:layout_weight="1">
 
-    <EditText
-      android:id="@+id/editTextModifyMeaning"
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:background="#3BBFBFBF"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="30dp">
+
+        <EditText
+          android:id="@+id/editTextModifyWord"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="30dp"
+          android:layout_marginRight="10dp"
+          android:hint="Word"
+          android:maxLength="70"
+          android:singleLine="true"
+          android:textSize="16sp" />
+
+        <EditText
+          android:id="@+id/editTextModifyMeaning"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginRight="10dp"
+          android:hint="Meaning"
+          android:maxLength="70"
+          android:singleLine="true"
+          android:textSize="16sp" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginTop="30dp"
+          android:orientation="horizontal">
+
+          <Button
+            android:id="@+id/btnCancelModifyWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#C86C6C6C"
+            android:text="CANCEL" />
+
+          <Button
+            android:id="@+id/btnModifyWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF8F00"
+            android:text="Modify" />
+        </LinearLayout>
+      </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginRight="10dp"
-      android:hint="Meaning"
-      android:maxLength="140"
-      android:singleLine="true"
-      android:textSize="16sp" />
+      android:layout_height="0dp"
+      android:layout_weight="1">
 
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginTop="30dp"
-      android:orientation="horizontal">
-
-      <Button
-        android:id="@+id/btnCancelModifyWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:backgroundTint="#C86C6C6C"
-        android:text="CANCEL" />
-
-      <Button
-        android:id="@+id/btnModifyWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:backgroundTint="#FF8F00"
-        android:text="Modify" />
-    </LinearLayout>
+    </FrameLayout>
 
   </LinearLayout>
 
