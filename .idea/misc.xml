@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/drawable/dra_left.xml" value="0.2535" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_add_word.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_main.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/activity_modify_table.xml" value="0.20592705167173253" />
@@ -17,7 +18,7 @@
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_search.xml" value="0.23052536231884058" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_bottom_vocas.xml" value="0.18857142857142858" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_query_table.xml" value="0.18857142857142858" />
-        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_random_word_view.xml" value="0.19934143870314083" />
+        <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_random_word_view.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/fragment_study_word_view.xml" value="0.20592705167173253" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/table_item.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidProjects/AndroidProjectStudyVoca/app/src/main/res/layout/word_item.xml" value="0.2857142857142857" />

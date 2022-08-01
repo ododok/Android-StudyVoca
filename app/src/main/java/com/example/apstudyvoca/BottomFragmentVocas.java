@@ -103,16 +103,6 @@ public class BottomFragmentVocas extends Fragment {
 
         String tableName = editTextMakeTable.getText().toString();
         if(tableName.length()>=1){
-          //String값 검사한 뒤에 create table호출.
-          String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
-          tableName = CharMatcher.anyOf(charsToRemove).removeFrom(tableName);
-
-      //테이블 이름은 숫자로 시작하면 안 됨. Le nom d'une table ne doit pas commencé par un chiffre
-          String sample = String.valueOf(tableName.charAt(0));
-          if(sample.matches("[0-9]")){
-            tableName = "_"+tableName;
-          }
-          Log.d("log", "입력된값 : "+tableName);
           helper.createTable(tableName);
           editTextMakeTable.setText(null);
         }

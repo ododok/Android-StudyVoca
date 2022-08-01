@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //fragment_random_word_view.xml과 연결된 파일.
 /*
 *  RandomStudy.java는 activity_random_study.xml 과 연결되어 있다.
-* 뷰페이저를 위한 어댑터 파일은 RandomAdapter.java이다. 
+* 뷰페이저를 위한 어댑터 파일은 RandomAdapter.java이다.
 * RandomWordView.java는 fragment_random_word_view와 연결되어 있다.
 * */
 

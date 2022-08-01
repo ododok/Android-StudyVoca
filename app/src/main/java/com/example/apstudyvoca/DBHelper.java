@@ -10,7 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.common.base.CharMatcher;
 
 import java.util.ArrayList;
 
@@ -40,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
   }
 
 
-  //Nombre de table dans le DB  // db의 테이블 개수를 리턴
+  //Nombre de tables dans le DB  // db의 테이블 개수를 리턴
   public int numberOfTables(){
     String sql = "SELECT * FROM sqlite_master WHERE " +
         "type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence';";
@@ -69,14 +72,50 @@ public class DBHelper extends SQLiteOpenHelper {
     return arr;
   }
 
+
   //create a table
-  public void createTable(String tableName){
+  public void createTable(@NonNull String tableName){
+    tableName = checkTableName(tableName);
     SQLiteDatabase db = getWritableDatabase();
     String sql = "CREATE TABLE "+tableName+" (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "word TEXT, meaning TEXT);";
     db.execSQL(sql);
     Log.d("db", "table ["+tableName +"] is created.");
   }
+
+
+  //테이블의 이름을 변경해주는 메서드
+  public void editTableName(String oldTableName, String newTableName){
+    newTableName = checkTableName(newTableName);
+    String sql = "ALTER TABLE "+oldTableName+" RENAME TO "+newTableName+";";
+    SQLiteDatabase db = getWritableDatabase();
+    db.execSQL(sql);
+  }
+
+
+//Verifier si le nom de table est convenant  //테이블명 적합성 체크
+  public String checkTableName(String tableName){
+    //Le nom d'une table ne doit pas commencé par un chiffre //테이블 이름은 숫자로 시작하면 안 됨.
+    String sample = String.valueOf(tableName.charAt(0));
+    if(sample.matches("[0-9]")){
+      tableName = "_"+tableName;
+    }
+
+    //le nom d'une table ne peut pas avoir des caractères spéciaux.//테이블이름에 특수문자는 불가능
+    String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
+    tableName = CharMatcher.anyOf(charsToRemove).removeFrom(tableName);
+    return tableName;
+  }
+
+
+  //Supprimer une table spécifique //테이블을 삭제하는 메서드
+  public void deleteTable(String tableName){
+    String sql = "DROP TABLE "+tableName+";";
+    SQLiteDatabase db = getWritableDatabase();
+    db.execSQL(sql);
+  }
+
+
 
   //특정 테이블에 자료를 입력하는 insert //insert a record(row) in a specific table.
   //if it returns true == success,  returns false == fail
@@ -111,7 +150,7 @@ public class DBHelper extends SQLiteOpenHelper {
   }
 
 
-  //특정 테이블의 자료를 <Word>타입 리스트로 리턴.
+  //특정 테이블의 자료를 ArrayList<Word> 타입으로 리턴.
   //Retourne un ArrayList<Word> d'une table spécifique
   public ArrayList<Word> getWordsFromTable(String tableName){
     ArrayList<Word> words = new ArrayList<>();
@@ -138,24 +177,18 @@ public class DBHelper extends SQLiteOpenHelper {
     db.execSQL(sql);
   }
 
+
   //db의 특정 테이블에서 라인(행/레코드) 하나를 찾아주는 메서드
   public String[] findRow(String tableName, int _id){
 
     return null;
   }
 
-  //테이블의 이름을 변경해주는 메서드
-  public void editTableName(String oldTableName, String newTableName){
-    String sql = "ALTER TABLE "+oldTableName+" RENAME TO "+newTableName+";";
-    SQLiteDatabase db = getWritableDatabase();
-    db.execSQL(sql);
-  }
 
-  //테이블을 삭제하는 메서드
-  public void deleteTable(String tableName){
-    String sql = "DROP TABLE "+tableName+";";
-    SQLiteDatabase db = getWritableDatabase();
-    db.execSQL(sql);
+
+  //특정 검색어가 담긴 row들을 전체 테이블을 모두 검색해서 찾아주고 리스트로 리턴.
+  public ArrayList<Word> search(String keyWord){
+    return null;
   }
 
 
