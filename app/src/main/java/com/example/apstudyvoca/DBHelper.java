@@ -100,6 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
     return true; //if the inserting is done without error, return true.
   }
 
+
   //특정 테이블에 몇 개의 row(ligne/행)이 있는지 조회
   //Nombre de ligne dans un table spécifique
   public int tableSize(String tableName){

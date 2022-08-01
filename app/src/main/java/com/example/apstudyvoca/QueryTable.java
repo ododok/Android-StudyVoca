@@ -80,8 +80,10 @@ public class QueryTable extends AppCompatActivity {
         startActivity(intent);
         return true;
 
-      case R.id.itemStudy:  //List (단어장) 스터디 버튼 (같은 버튼을 더 눈에 띄는 곳에 넣을 예정)
-        Toast.makeText(this, "study item 클릭", Toast.LENGTH_SHORT).show();
+      case R.id.itemStudy:  //List (단어장) 스터디 버튼 (같은 버튼을 더 눈에 띄는 곳에 넣을까?)
+        Intent intent2 = new Intent(getApplicationContext(), RandomStudy.class);
+        intent2.putExtra("tableName", tableName);
+        startActivity(intent2);
         return true;
 
     }

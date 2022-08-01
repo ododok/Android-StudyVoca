@@ -48,7 +48,7 @@ public class AddWord extends AppCompatActivity {
     btnAddWord = findViewById(R.id.btnAddWord);
     btnAddWord.setOnClickListener(v->{
       if(editTextAddWord.length()>0 && editTextAddMeaning.length()>0){
-        //db에 입력가능하게 만들어야 함.
+
         String word = editTextAddWord.getText().toString();
         String meaning = editTextAddMeaning.getText().toString();
         boolean result = helper.insert(word, meaning, tableName); //proglem[todo]

@@ -101,14 +101,19 @@ public class BottomFragmentVocas extends Fragment {
         //dialogMakeTable.findViewById 라고 한 것에 주의하자. rootView.findViewById등이 아니라.
         //**************************************
 
-        String listName = editTextMakeTable.getText().toString();
-        if(listName.length()>=1){
+        String tableName = editTextMakeTable.getText().toString();
+        if(tableName.length()>=1){
           //String값 검사한 뒤에 create table호출.
-          String charsToRemove = "\n+ ×÷=/_<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
-          listName = CharMatcher.anyOf(charsToRemove).removeFrom(listName);
-          //ToDo 테이블이름이 숫자로 시작하면 입력 안 되는 문제 해결할 것.
-          Log.d("log", "입력된값 : "+listName);
-          helper.createTable(listName);
+          String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
+          tableName = CharMatcher.anyOf(charsToRemove).removeFrom(tableName);
+
+      //테이블 이름은 숫자로 시작하면 안 됨. Le nom d'une table ne doit pas commencé par un chiffre
+          String sample = String.valueOf(tableName.charAt(0));
+          if(sample.matches("[0-9]")){
+            tableName = "_"+tableName;
+          }
+          Log.d("log", "입력된값 : "+tableName);
+          helper.createTable(tableName);
           editTextMakeTable.setText(null);
         }
         initRecyclerView();
