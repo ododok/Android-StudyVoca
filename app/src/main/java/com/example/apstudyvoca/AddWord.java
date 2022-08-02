@@ -53,17 +53,17 @@ public class AddWord extends AppCompatActivity {
         String meaning = editTextAddMeaning.getText().toString();
         boolean result = helper.insert(word, meaning, tableName); //proglem[todo]
         if(!result){
-          Toast.makeText(getApplicationContext(),"Word already exist", Toast.LENGTH_SHORT).show();
+          Toast.makeText(getApplicationContext(),R.string.WordAlreadyExist, Toast.LENGTH_SHORT).show();
         }else{
 
-          Toast.makeText(getApplicationContext(),"entered correctly", Toast.LENGTH_SHORT).show();
+          Toast.makeText(getApplicationContext(),R.string.EnteredCorrectly, Toast.LENGTH_SHORT).show();
           editTextAddWord.setText(null);
           editTextAddMeaning.setText(null);
         }
 
       }else{
         Toast.makeText(getApplicationContext(),
-            "Please do not leave word and meaning empty", Toast.LENGTH_SHORT).show();
+            R.string.DoNotLeaveEmpty, Toast.LENGTH_SHORT).show();
       }
     });
 

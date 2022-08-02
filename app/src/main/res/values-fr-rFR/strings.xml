@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">APStudyVoca</string>
+  <string name="makeAList">Créer une liste</string>
+  <string name="ListName">Le nom de liste</string>
+  <string name="ADD">Ajouter</string>
+  <string name="Study">Étudier</string>
+  <string name="Cancel">Annuler</string>
+  <string name="Modify">Modifier</string>
+  <string name="Word">Mot</string>
+  <string name="Meaning">Définition</string>
+  <string name="WannaDelete">Voulez-vous supprimez?</string>
+  <string name="Delete">Supprimer</string>
+  <string name="NoWordOnTheList">Il n\'y a pas de mot à étudier.</string>
+  <string name="WordAlreadyExist">Le mot déjà existe</string>
+  <string name="EnteredCorrectly">Bien enregistré</string>
+  <string name="DoNotLeaveEmpty">Ne pas laissez le mot et la définition vide</string>
+  <string name="Search">Recherche</string>
+</resources>

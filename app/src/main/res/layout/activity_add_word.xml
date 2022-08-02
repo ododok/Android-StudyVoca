@@ -48,7 +48,7 @@
           android:layout_marginLeft="10dp"
           android:layout_marginTop="30dp"
           android:layout_marginRight="10dp"
-          android:hint="Word"
+          android:hint="@string/Word"
           android:maxLength="70"
           android:singleLine="true"
           android:textSize="16sp" />
@@ -60,7 +60,7 @@
           android:layout_marginLeft="10dp"
           android:layout_marginTop="20dp"
           android:layout_marginRight="10dp"
-          android:hint="Meaning"
+          android:hint="@string/Meaning"
           android:maxLength="70"
           android:singleLine="true"
           android:textSize="16sp" />
@@ -79,7 +79,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:backgroundTint="#C86C6C6C"
-            android:text="CANCEL" />
+            android:text="@string/Cancel" />
 
           <Button
             android:id="@+id/btnAddWord"
@@ -89,7 +89,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:backgroundTint="#27A62C"
-            android:text="ADD" />
+            android:text="@string/ADD" />
         </LinearLayout>
 
       </LinearLayout>

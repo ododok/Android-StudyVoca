@@ -110,7 +110,7 @@ public class QueryTable extends AppCompatActivity {
       intent2.putExtra("tableName", tableName);
       startActivity(intent2);
     }else{
-      Toast.makeText(getApplicationContext(),"There's no word on the list.", Toast.LENGTH_SHORT).show();
+      Toast.makeText(getApplicationContext(),R.string.NoWordOnTheList, Toast.LENGTH_SHORT).show();
     }
   }
 

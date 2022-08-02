@@ -84,7 +84,7 @@ public class BottomFragmentVocas extends Fragment {
       adb.setView(dialogMakeTable);
 
       //버튼리스너. "ADD" 란 문자열은 차후에 언어별로 다르게 변경
-      adb.setPositiveButton("ADD", (dialog, which) -> {
+      adb.setPositiveButton(R.string.ADD, (dialog, which) -> {
         //todo 언제나 주의할 것 ************************************
         editTextMakeTable = dialogMakeTable.findViewById(R.id.editTextMakeTable);//인플레이트 주의!
         //dialog의 뷰의 요소를 참조reference할 때는 dialog 뷰에서 찾아야 한다.
@@ -99,7 +99,7 @@ public class BottomFragmentVocas extends Fragment {
         initRecyclerView();
       });
 
-      adb.setNegativeButton("CANCEL", null);
+      adb.setNegativeButton(R.string.Cancel, null);
       adb.show();
     });
 

@@ -111,10 +111,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         if(deleteWordIconVisible) {
           AlertDialog.Builder adb = new AlertDialog.Builder(context);
           adb.setTitle(textViewWord.getText().toString());
-          adb.setMessage("Do you really want to delete?");
+          adb.setMessage(R.string.WannaDelete);
 
           //DELETE button event
-          adb.setPositiveButton("DELETE", (dialog, which) -> {
+          adb.setPositiveButton(R.string.Delete, (dialog, which) -> {
             DBHelper helper = new DBHelper(context);
             helper.deleteRow(tableName, Integer.parseInt(textViewWordId.getText().toString()));
 
@@ -133,7 +133,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
           });
 
           //Cancel button event
-          adb.setNegativeButton("CANCEL", (dialog, which)->{
+          adb.setNegativeButton(R.string.Cancel, (dialog, which)->{
             //유저가 삭제하지 않겠다고 했으니까, Word아이템의 삭제대상 표시도 지운다.
             imageViewDeleteWord.setVisibility(View.INVISIBLE);
             linearLayoutWord.setBackgroundColor(Color.TRANSPARENT);

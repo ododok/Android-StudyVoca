@@ -114,8 +114,8 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
           adb.setTitle("\uD83D\uDCC2 "+ textViewTableName.getText().toString());
 
 
-          //todo Modify button listener (해결중)
-          adb.setPositiveButton("MODIFY", (dialog, which) -> {
+          // Modify button listener
+          adb.setPositiveButton(R.string.Modify, (dialog, which) -> {
             editTextNewTabName = dialogView.findViewById(R.id.editTextNewTabName);
             //(위) dialog의 뷰의 요소를 참조reference할 때는 dialog 뷰에서 찾아야 한다.
             //dialogMakeTable.findViewById 라고 한 것에 주의하자. rootView.findViewById등이 아니라.
@@ -135,7 +135,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
 
 
           //CANCEL BUTTON LISTENER
-          adb.setNegativeButton("CANCEL", (dialog, which)->{
+          adb.setNegativeButton(R.string.Cancel, (dialog, which)->{
             //유저가 삭제하지 않겠다고 했으니까, 삭제대상 표식을 다시 안 보이게 하고.
             layoutEditTable.setVisibility(View.INVISIBLE);
             linearLayoutTable.setBackgroundColor(Color.WHITE);
@@ -156,10 +156,10 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
           //유저가 뭘 선택하건 이전 액티비티를 refresh할 것.
           AlertDialog.Builder adb = new AlertDialog.Builder(context);
           adb.setTitle("\uD83D\uDCC2 "+textViewTableName.getText().toString());
-          adb.setMessage("Do you really want to delete?");
+          adb.setMessage(R.string.WannaDelete);
 
           //DELETE BUTTON EVENT
-          adb.setPositiveButton("DELETE", (dialog, which)->{
+          adb.setPositiveButton(R.string.Delete, (dialog, which)->{
             //call delete table methode
 
             helper.deleteTable(textViewTableName.getText().toString());
@@ -175,7 +175,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
           });
 
           //CANCEL BUTTON EVENT
-          adb.setNegativeButton("CANCEL", (dialog, which)->{
+          adb.setNegativeButton(R.string.Delete, (dialog, which)->{
             //유저가 삭제하지 않겠다고 했으니까, 삭제대상 표식을 다시 안 보이게 하고.
             layoutEditTable.setVisibility(View.INVISIBLE);
             linearLayoutTable.setBackgroundColor(Color.WHITE);

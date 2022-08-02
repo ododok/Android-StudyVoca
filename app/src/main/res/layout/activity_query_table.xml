@@ -44,7 +44,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="20dp"
         android:layout_weight="1"
-        android:text="ADD" />
+        android:text="@string/ADD" />
 
       <Button
         android:id="@+id/buttonStudy"
@@ -53,7 +53,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:text="Study" />
+        android:text="@string/Study" />
     </LinearLayout>
   </LinearLayout>
 

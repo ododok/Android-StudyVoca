@@ -15,9 +15,10 @@ public class Word {
     return _id;
   }
 
-  public void set_id(int _id) {
+  //id d'une ligne (de DB) ne change jamais
+/*  public void set_id(int _id) {
     this._id = _id;
-  }
+  }*/
 
   public String getWord() {
     return word;

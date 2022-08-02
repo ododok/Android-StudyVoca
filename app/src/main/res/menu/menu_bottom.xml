@@ -12,7 +12,7 @@
     android:id="@+id/bTabSearch"
     android:enabled="true"
     android:icon="@drawable/ic_baseline_search_24"
-    android:title="Search"
+    android:title="@string/Search"
     app:showAsAction="ifRoom" />
   <item
     android:id="@+id/bTabInfo"
