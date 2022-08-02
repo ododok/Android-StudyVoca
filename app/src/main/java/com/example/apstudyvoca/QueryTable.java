@@ -29,7 +29,7 @@ public class QueryTable extends AppCompatActivity {
   RecyclerView recyclerViewWords;
   WordAdapter wordAdapter;
   DBHelper helper;
-  Button buttonAddWord, buttonStudy;
+  Button buttonAddWord, buttonStudy, buttonStudyInverse;
 
 
   @Override
@@ -59,6 +59,12 @@ public class QueryTable extends AppCompatActivity {
     buttonStudy.setOnClickListener(v->{
       study();
     });
+
+    buttonStudyInverse = findViewById(R.id.buttonStudyInverse);
+    buttonStudyInverse.setOnClickListener(v->{
+      studyInverse();
+    });
+
 
 
   }//onCreate
@@ -106,13 +112,26 @@ public class QueryTable extends AppCompatActivity {
 
   public void study(){
     if(helper.tableSize(tableName)>=1) {
-      Intent intent2 = new Intent(getApplicationContext(), RandomStudy.class);
-      intent2.putExtra("tableName", tableName);
-      startActivity(intent2);
+      Intent intent = new Intent(getApplicationContext(), RandomStudy.class);
+      intent.putExtra("tableName", tableName);
+      startActivity(intent);
     }else{
       Toast.makeText(getApplicationContext(),R.string.NoWordOnTheList, Toast.LENGTH_SHORT).show();
     }
   }
+
+
+  public void studyInverse() {
+    if(helper.tableSize(tableName) >= 1){
+      Intent intent = new Intent(getApplicationContext(), RandomStudyInverse.class);
+      intent.putExtra("tableName", tableName);
+      startActivity(intent);
+    }else{
+      Toast.makeText(getApplicationContext(),R.string.NoWordOnTheList, Toast.LENGTH_SHORT).show();
+
+    }
+  }
+
 
 
   @Override //(top) tool bar inflation

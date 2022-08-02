@@ -41,8 +41,8 @@
         android:id="@+id/buttonAddWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_weight="1"
         android:text="@string/ADD" />
 
@@ -50,10 +50,20 @@
         android:id="@+id/buttonStudy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_weight="1"
         android:text="@string/Study" />
+
+      <Button
+        android:id="@+id/buttonStudyInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:text="@string/StudyInverse" />
+
     </LinearLayout>
   </LinearLayout>
 

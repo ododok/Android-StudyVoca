@@ -16,4 +16,5 @@
   <string name="EnteredCorrectly">저장되었습니다</string>
   <string name="DoNotLeaveEmpty">단어와 의미칸을 채워주세요</string>
   <string name="Search">검색</string>
+  <string name="StudyInverse">🔄공부하기</string>
 </resources>

@@ -1,32 +1,23 @@
 package com.example.apstudyvoca;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.DragEvent;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager2.widget.ViewPager2;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-//fragment_random_word_view.xml과 연결된 파일.
-/*
-*  RandomStudy.java는 activity_random_study.xml 과 연결되어 있다.
-* 뷰페이저를 위한 어댑터 파일은 RandomAdapter.java이다.
-* RandomWordView.java는 fragment_random_word_view와 연결되어 있다.
-* */
-
-public class RandomStudy extends AppCompatActivity {
+public class RandomStudyInverse extends AppCompatActivity {
   ArrayList<Word> items;
   String tableName;
   Toolbar toolbar;
@@ -34,6 +25,7 @@ public class RandomStudy extends AppCompatActivity {
   View viewPrevious, viewNext;
   ProgressBar progressBar;
   TextView tvProgress;
+
 
   @SuppressLint("ClickableViewAccessibility")
   @Override
@@ -61,7 +53,7 @@ public class RandomStudy extends AppCompatActivity {
 
     setInitViewPager();
 
-    // 버튼대신 뷰를 누르면 작동하게 사용
+    // 버튼대신 뷰를 누르면 작동하게 사용. ViewPrevious(kind of a button)
     viewPrevious = findViewById(R.id.viewPrevious);
     viewPrevious.setOnClickListener(v->{ //이전 뷰 보기
       viewPager.setCurrentItem(viewPager.getCurrentItem()-1);
@@ -75,6 +67,7 @@ public class RandomStudy extends AppCompatActivity {
       return false;
     });
 
+    //ViewNext (kind of a button)
     viewNext = findViewById(R.id.viewNext);
     viewNext.setOnClickListener(v->{ //다음 뷰 보기
       viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
@@ -87,8 +80,6 @@ public class RandomStudy extends AppCompatActivity {
       }
       return false;
     });
-
-
 
     //progress bar
     progressBar = findViewById(R.id.progressBar);
@@ -104,9 +95,7 @@ public class RandomStudy extends AppCompatActivity {
       }
     });
 
-
   }//onCreate
-
 
   //view pager execute. 뷰페이져 실행.
   private void setInitViewPager() {
@@ -114,10 +103,10 @@ public class RandomStudy extends AppCompatActivity {
     viewPager = findViewById(R.id.viewPager);
 
     //데이터 로딩.
-    RandomAdapter randomAdapter = new RandomAdapter(this, items);
+    RandomAdapterInverse randomAdapterInverse = new RandomAdapterInverse(this, items);
     //프래그먼트에서는 getActivity로 참조하고, 액티비티에선 this로 참조해야 한다. 중요.
 
-    viewPager.setAdapter(randomAdapter);
+    viewPager.setAdapter(randomAdapterInverse);
     //Adapter객체를 파라미터로 받고 ViewPager에 전달받는다.
 
     viewPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
@@ -145,7 +134,6 @@ public class RandomStudy extends AppCompatActivity {
 
   }//setInit()
 
-
   @Override //toolbar item event
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -158,5 +146,4 @@ public class RandomStudy extends AppCompatActivity {
     return super.onOptionsItemSelected(item);
   }
 
-
-}//class RandomStudy
+}//class RandomStudyInverse

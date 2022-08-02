@@ -9,7 +9,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,6 +19,8 @@ import java.util.ArrayList;
 public class RandomWordView extends Fragment {
 
   TextView textViewRandomWord, textViewRandomMeaning;
+  boolean meaning = false;
+  ImageView imageViewMeaning, imageViewWord;
   Word word;
 
   public RandomWordView(Word word) {
@@ -33,14 +37,27 @@ public class RandomWordView extends Fragment {
     textViewRandomWord = view.findViewById(R.id.textViewRandomWord);
     textViewRandomWord.setText(word.getWord());
     textViewRandomMeaning = view.findViewById(R.id.textViewRandomMeaning);
-    textViewRandomMeaning.setText(word.getMeaning());
+    textViewRandomMeaning.setText(null);
+
+    imageViewWord = view.findViewById(R.id.imageViewWord);
+    imageViewMeaning = view.findViewById(R.id.imageViewMeaning);
+
+    imageViewMeaning.setOnClickListener(v-> {
+      if(!meaning) {
+        textViewRandomMeaning.setText(word.getMeaning());
+        meaning=true;
+      }else{
+        textViewRandomMeaning.setText(null);
+        meaning=false;
+      }
+    });
+
 
 
 
 
     return view;
   }//onCreateView
-
 
 
 

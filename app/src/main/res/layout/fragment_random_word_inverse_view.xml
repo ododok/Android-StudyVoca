@@ -17,7 +17,47 @@
       android:layout_weight="1">
 
       <TextView
-        android:id="@+id/textViewRandomWord"
+        android:id="@+id/tvInverseRandomMeaning"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="36dp"
+        android:paddingTop="10dp"
+        android:paddingRight="36dp"
+        android:paddingBottom="30dp"
+        android:text="MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN "
+        android:textAlignment="center"
+        android:textColor="?attr/actionMenuTextColor"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+      <ImageView
+        android:id="@+id/imageViewTop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/d2_left" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+
+      <TextView
+        android:id="@+id/tvInverseRandomWord"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="40dp"
@@ -38,45 +78,7 @@
         app:layout_constraintVertical_bias="0.477" />
 
       <ImageView
-        android:id="@+id/imageViewWord"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/d2_left" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1">
-
-      <TextView
-        android:id="@+id/textViewRandomMeaning"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="36dp"
-        android:paddingTop="10dp"
-        android:paddingRight="36dp"
-        android:paddingBottom="30dp"
-        android:text="MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN MEAN "
-        android:textAlignment="center"
-        android:textColor="?attr/actionMenuTextColor"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-      <ImageView
-        android:id="@+id/imageViewMeaning"
+        android:id="@+id/imageViewBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"

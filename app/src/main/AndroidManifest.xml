@@ -17,6 +17,9 @@
       android:name=".RandomStudy"
       android:exported="false" />
     <activity
+      android:name=".RandomStudyInverse"
+      android:exported="false" />
+    <activity
       android:name=".ModifyWord"
       android:exported="false" />
     <activity
