@@ -84,35 +84,26 @@ public class DBHelper extends SQLiteOpenHelper {
     for (int i = 0; i < tableNames.length; i++) { //각각의 테이블을 돌아가면서 tableList[i]에 대입.
 
 
-      String sql = "SELECT * FROM " + tableNames[i] + " WHERE word LIKE  '%" + keyword + "%';";
-      //String sql = "SELECT * FROM " + tableNames[i] + " WHERE word MATCH '" + keyword + "';";
-
-
+      String sql = "SELECT * FROM " + tableNames[i] + " WHERE word LIKE '%" + keyword + "%';";
       Cursor cursor = db.rawQuery(sql, null);
-
       while (cursor.moveToNext()) {
-        int id = cursor.getInt(0);
-        String word = cursor.getString(1);
-        String meaning = cursor.getString(2);
-
-        if (keyword.equals(word) || keyword.equals(meaning)) {
-          list.add(new SearchItem(tableNames[i], id, word, meaning));
-        }
+        list.add(new SearchItem(tableNames[i], cursor.getInt(0),
+            cursor.getString(1), cursor.getString(2)));
       }
 
-      //meaning 도 검색하게 해야 한다.
+      sql = "SELECT * FROM " + tableNames[i] + " WHERE meaning LIKE '%" + keyword + "%';";
+      cursor = db.rawQuery(sql, null);
+      while (cursor.moveToNext()) {
+        list.add(new SearchItem(tableNames[i], cursor.getInt(0),
+            cursor.getString(1), cursor.getString(2)));
+      }
+
+      //중복처리는 안 함. word와 meaning에 같은 단어를 넣을 확률이 거의 없기 때문에.
 
       cursor.close();
 
     }
 
-    //    list.add(new SearchItem("t테이블", 10, "word1", "meaning1"));
-//    list.add(new SearchItem("리스트가나다", 3, keyword, "meaning2"));
-
-/*        Log.d("db", "items 사이즈 : "+String.valueOf(items.size()));
-        for(int k=0; k<items.size(); k++){
-          Log.d("db", items.get(k).toString());
-        }*/
 
     return list;
   }//search

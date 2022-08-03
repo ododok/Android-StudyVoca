@@ -18,5 +18,6 @@
   <string name="Search">Search</string>
   <string name="StudyInverse">STUDY🔄</string>
   <string name="List">List</string>
-  <string name="SameWord">Il y a déjà le même mot.</string>
+  <string name="SameWord">There\'s already the same word</string>
+  <string name="noSearchResult">No search result</string>
 </resources>

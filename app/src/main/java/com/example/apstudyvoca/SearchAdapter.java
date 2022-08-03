@@ -1,6 +1,7 @@
 package com.example.apstudyvoca;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,12 +66,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
       tvSearchWord = itemView.findViewById(R.id.tvSearchWord);
       tvSearchMeaning = itemView.findViewById(R.id.tvSearchMeaning);
 
-      //view (LinearLayout) click event
+      //view (LinearLayout) click event //검색결과 클릭 이벤트.
       linearLayoutSearch.setOnClickListener(v->{
-        Toast.makeText(context, tvSearchWord.getText().toString(), Toast.LENGTH_SHORT).show();
-        //todo 검색결과 개별아이템 클릭시 이벤트. (뭘로할지 모르곘는데 그냥 테이블로 보내주는게 나을 듯)
-
-
+        //Toast.makeText(context, tvSearchWord.getText().toString(), Toast.LENGTH_SHORT).show();
+        //if click -> open table query view. (Word list)
+        Intent intent = new Intent(context, QueryTable.class);
+        intent.putExtra("tableName", tvSearchTableName.getText().toString());
+        context.startActivity(intent);
       });
 
     }

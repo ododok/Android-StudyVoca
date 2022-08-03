@@ -18,4 +18,6 @@
   <string name="Search">검색</string>
   <string name="StudyInverse">🔄공부하기</string>
   <string name="List">단어장</string>
+  <string name="SameWord">이미 같은 단어가 있습니다</string>
+  <string name="noSearchResult">검색결과가 존재하지 않습니다</string>
 </resources>

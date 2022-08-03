@@ -32,14 +32,14 @@ public class BottomFragmentSearch extends Fragment {
     //todo search view
     searchView = rootView.findViewById(R.id.searchView);
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-      @Override //검색 버튼 누를 때
+      @Override //검색 버튼 누를 때 //When user search ( event)
       public boolean onQueryTextSubmit(String query) {
-        Toast.makeText(getContext(), "검색어 : "+query, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "keyword : "+query, Toast.LENGTH_SHORT).show();
         initSearchResults(query);
         return false;
       }
 
-      @Override //검색창에 글자 변경이 일어날 때
+      @Override //검색창에 글자 변경이 일어날 때 //case of change on searching bar
       public boolean onQueryTextChange(String newText) {
         return false;
       }
@@ -60,25 +60,18 @@ public class BottomFragmentSearch extends Fragment {
     recyclerViewSearch.setLayoutManager(layoutManager);
 
 
-    //검색어를 가져와서 (String keyword);
-    //DBhelper에서 검색어를 기반으로 ArrayList<SearchItem> list 를 만들어 리턴하는 메서드를 만들고.
-    //검색어를 파라미터로 넣어 이 메서드를 호출하고
-    //그 리턴값 ArrayList 데이터를 adapter에 setArrayData 메서드를 호출해서 붙이고
-    //리사이클러뷰에 어댑터를 붙인다.
-
-    //todo - make the method in DBHelper.java
 
 
-    ArrayList<SearchItem> items = new ArrayList<>();
+    ArrayList<SearchItem> items;
     items= helper.search(keyword);
 
     //test
-
-//
 //    items.add(new SearchItem("table", 10, "word1", "meaning1"));
 //   items.add(new SearchItem("table AB", 3, keyword, "meaning2"));
 
-
+    if(items.size()==0){
+      Toast.makeText(getContext(), R.string.noSearchResult, Toast.LENGTH_SHORT).show();
+    }
 
     adapter = new SearchAdapter(items);
     recyclerViewSearch.setAdapter(adapter);

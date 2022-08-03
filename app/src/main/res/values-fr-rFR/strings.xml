@@ -18,5 +18,6 @@
   <string name="Search">Recherche</string>
   <string name="StudyInverse">Étudier🔄</string>
   <string name="List">Liste</string>
-  <string name="SameWord">이미 같은 단어가 있습니다.</string>
+  <string name="SameWord">Il y a déjà le même mot.</string>
+  <string name="noSearchResult">"Aucun résultat trouvé "</string>
 </resources>

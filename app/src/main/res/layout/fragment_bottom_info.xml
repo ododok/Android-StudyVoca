@@ -9,6 +9,9 @@
   <TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="fragment bottom info" />
+    android:layout_margin="18dp"
+    android:gravity="center_vertical"
+    android:text="Projet pour NFA019 \nHongjun CHOE\nododok@gmail.com\n\n03/08/2022"
+    android:textSize="20sp" />
 
 </FrameLayout>
