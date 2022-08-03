@@ -174,7 +174,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
           });
 
           //CANCEL BUTTON EVENT
-          adb.setNegativeButton(R.string.Delete, (dialog, which)->{
+          adb.setNegativeButton(R.string.Cancel, (dialog, which)->{
             //유저가 삭제하지 않겠다고 했으니까, 삭제대상 표식을 다시 안 보이게 하고.
             layoutEditTable.setVisibility(View.INVISIBLE);
             linearLayoutTable.setBackgroundColor(Color.WHITE);

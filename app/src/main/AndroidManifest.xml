@@ -8,7 +8,7 @@
     android:dataExtractionRules="@xml/data_extraction_rules"
     android:fullBackupContent="@xml/backup_rules"
     android:icon="@drawable/miniicon_minicat_blue"
-    android:label="@string/app_name"
+    android:label="Voca Study"
     android:roundIcon="@drawable/miniicon_minicat_blue"
     android:supportsRtl="true"
     android:theme="@style/Theme.APStudyVoca"

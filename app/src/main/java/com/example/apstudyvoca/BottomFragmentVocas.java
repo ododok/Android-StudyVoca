@@ -96,30 +96,31 @@ public class BottomFragmentVocas extends Fragment {
           helper.createTable(tableName);
           editTextMakeTable.setText(null);
         }
-        initRecyclerView();
+        //initRecyclerView();
       });
 
       adb.setNegativeButton(R.string.Cancel, null);
       adb.show();
     });
 
-    //db examples
-    helper.insert("Apple", "Pomme", "example");
-    helper.insert("Cat", "Chat", "example");
-    helper.insert("Winter", "Hiver", "example");
-    helper.insert("Spring", "Printemps", "example");
-    helper.insert("Summer", "Été", "example");
-    helper.insert("Winter", "Hiver", "example");
-    helper.insert("Car", "Voiture", "example");
-    helper.insert("Dog", "Chien", "example");
-    helper.insert("Autumn", "Automne", "example");
-    helper.insert("Book", "Livre", "example");
-    helper.insert("Computer", "Ordinateur", "example");
-    helper.insert("Airplane", "Avion", "example");
-    helper.insert("Ship", "Bateau", "example");
-    helper.insert("Squirrel", "Écureuil", "example");
-    helper.insert("Deer", "Cerf, Biche", "example");
-    helper.insert("Ant", "Fourmi", "example");
+//      //db examples
+//      helper.insert("Apple", "Pomme", "example");
+//      helper.insert("Cat", "Chat", "example");
+//      helper.insert("Winter", "Hiver", "example");
+//      helper.insert("Spring", "Printemps", "example");
+//      helper.insert("Summer", "Été", "example");
+//      helper.insert("Winter", "Hiver", "example");
+//      helper.insert("Car", "Voiture", "example");
+//      helper.insert("Dog", "Chien", "example");
+//      helper.insert("Autumn", "Automne", "example");
+//      helper.insert("Book", "Livre", "example");
+//      helper.insert("Computer", "Ordinateur", "example");
+//      helper.insert("Airplane", "Avion", "example");
+//      helper.insert("Ship", "Bateau", "example");
+//      helper.insert("Squirrel", "Écureuil", "example");
+//      helper.insert("Deer", "Cerf, Biche", "example");
+//      helper.insert("Ant", "Fourmi", "example");
+
 
   }
 

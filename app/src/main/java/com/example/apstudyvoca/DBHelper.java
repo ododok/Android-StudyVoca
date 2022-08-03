@@ -15,32 +15,84 @@ import androidx.annotation.Nullable;
 
 import com.google.common.base.CharMatcher;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+  private static String DB_PATH = ""; //db file path //db파일 경로
+  private static String DB_NAME = "vocastudy.db";  //db name!
+
   Context context;
 
   public DBHelper(@Nullable Context context) {
-    super(context, "vocadb", null, 1); //makes db.
+    super(context, DB_NAME, null, 1); //makes db.
+    DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";  //db file path //db파일 경로
     this.context = context;
+    databaseCheck();
   }
+
+  private void databaseCheck(){
+    File dbFile = new File(DB_PATH + DB_NAME);
+    if (!dbFile.exists()) {
+      dbCopy();
+      Log.d("db", "DB is copied.");
+    }
+  }
+
+  private void dbCopy(){
+    try{
+      File folder = new File(DB_PATH);
+      if(!folder.exists()){
+        folder.mkdir();
+      }
+      InputStream inputStream = context.getAssets().open(DB_NAME);
+      String out_filename = DB_PATH + DB_NAME;
+      OutputStream outputStream = new FileOutputStream(out_filename);
+      byte[] mBuffer = new byte[1024];
+      int mLength;
+      while ((mLength = inputStream.read(mBuffer)) > 0) {
+        outputStream.write(mBuffer,0,mLength);
+      }
+      outputStream.flush();;
+      outputStream.close();
+      inputStream.close();
+    }catch(IOException e){
+      e.printStackTrace();
+      Log.d("db", "!!! IOException in dbCopy !!!");
+    }
+  }
+
 
 
   @Override //초기화. 테이블 생성 기능. 처음 db생성시 기본으로 들어갈 테이블.
   public void onCreate(SQLiteDatabase db) {
-    db.execSQL("CREATE TABLE example (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-        "word TEXT, meaning TEXT);" );
-    Log.d("db", "db & table 'example' is created.");
+    Log.d("db", "onCreate (DBHelper.java)");
+//    db.execSQL("CREATE TABLE example (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+//        "word TEXT, meaning TEXT);" );
+//    Log.d("db", "db & table 'example' is created.");
+
     //여기 db.close()하지말것.
   }
 
+  @Override
+  public void onOpen(SQLiteDatabase db) {
+    super.onOpen(db);
+    Log.d("db", "db open (onOpen in DBHelper.java)");
+  }
 
   @Override //테이블 업그레이드. 삭제 혹은 다시 생성.
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    db.execSQL("DROP TABLE IF EXISTS example");
-    onCreate(db);
+//    if(newVersion>1) {
+//      db.execSQL("DROP TABLE IF EXISTS example");
+//    }
+//    onCreate(db);
+
   }
 
 
