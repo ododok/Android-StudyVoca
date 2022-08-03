@@ -44,6 +44,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_weight="1"
+        android:backgroundTint="#27A62C"
         android:text="@string/ADD" />
 
       <Button

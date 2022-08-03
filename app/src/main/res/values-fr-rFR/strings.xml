@@ -4,7 +4,7 @@
   <string name="makeAList">Créer une liste</string>
   <string name="ListName">Le nom de liste</string>
   <string name="ADD">Ajouter</string>
-  <string name="Study">Étudier</string>
+  <string name="Study">Étudier⬇</string>
   <string name="Cancel">Annuler</string>
   <string name="Modify">Modifier</string>
   <string name="Word">Mot</string>
@@ -16,7 +16,7 @@
   <string name="EnteredCorrectly">Bien enregistré</string>
   <string name="DoNotLeaveEmpty">Ne pas laissez le mot et la définition vide</string>
   <string name="Search">Recherche</string>
-  <string name="StudyInverse">Étudier🔄</string>
+  <string name="StudyInverse">Étudier⬆</string>
   <string name="List">Liste</string>
   <string name="SameWord">Il y a déjà le même mot.</string>
   <string name="noSearchResult">"Aucun résultat trouvé "</string>
