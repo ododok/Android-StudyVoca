@@ -1,7 +1,6 @@
 package com.example.apstudyvoca;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -72,13 +71,11 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
 
     public WordViewHolder(Context context, @NonNull View itemView) {
       super(itemView);
-
         textViewWord = itemView.findViewById(R.id.textViewWord);
         textViewMeaning = itemView.findViewById(R.id.textViewMeaning);
         textViewWordId = itemView.findViewById(R.id.textViewWordId);
         linearLayoutWord = itemView.findViewById(R.id.linearLayoutWord);
         imageViewDeleteWord = itemView.findViewById(R.id.imageViewDeleteWord);
-
 
         //click event
       linearLayoutWord.setOnClickListener(v->{
@@ -86,9 +83,8 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
           imageViewDeleteWord.setVisibility(View.INVISIBLE);
           linearLayoutWord.setBackgroundColor(Color.TRANSPARENT);
           deleteWordIconVisible = false;
-        } else {
-          //Toast.makeText(context, textViewWord.getText().toString(), Toast.LENGTH_SHORT).show();
-          // 단어 조회기능 들어가야 함. 조회시 수정 가능하도록
+        } else { //modify the word & meaning //단어와 의미 수정  //Modifier le vocabulaire
+          //Toast.makeText(context, textViewWord.getText().toString()+" is selected", Toast.LENGTH_SHORT).show();
           Intent intent = new Intent(context, ModifyWord.class);
           intent.putExtra("tableName", tableName);
           intent.putExtra("_id", Integer.parseInt(textViewWordId.getText().toString()));

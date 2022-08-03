@@ -11,9 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ModifyWord extends AppCompatActivity {
-  private static final int CODE_MODIFYWORD_TO_QUERYTABLE = 301;
 
   Toolbar toolbar;
   Button btnCancelModifyWord, btnModifyWord;
@@ -34,8 +34,6 @@ public class ModifyWord extends AppCompatActivity {
     meaning = intent.getStringExtra("meaning");
 
     helper = new DBHelper(this);
-    //dbhelper에 modify 기능을 만들어야 함. 파라미터로 테이블이름과 id를 넣고 자료를 찾도록.
-    //테이블 이름을 전송받을 방법을 만들자.
 
     editTextModifyWord = findViewById(R.id.editTextModifyWord);
     editTextModifyMeaning = findViewById(R.id.editTextModifyMeaning);
@@ -48,10 +46,16 @@ public class ModifyWord extends AppCompatActivity {
 
     btnModifyWord = findViewById(R.id.btnModifyWord);
     btnModifyWord.setOnClickListener(v->{
-      helper.modifyRow(tableName, _id,
-          editTextModifyWord.getText().toString(),
-          editTextModifyMeaning.getText().toString());
-      finish();
+      boolean overlap;
+        overlap = helper.modifyRow(tableName, _id,
+            editTextModifyWord.getText().toString(),
+            editTextModifyMeaning.getText().toString());
+
+        if(!overlap) {
+          Toast.makeText(getApplicationContext(), R.string.SameWord, Toast.LENGTH_SHORT).show();
+        } else {
+          finish();
+        }
     });
 
 
@@ -62,9 +66,8 @@ public class ModifyWord extends AppCompatActivity {
     getSupportActionBar().setTitle("\uD83D\uDCC2 "+tableName);
 
 
-
-
   }//onCreate
+
 
   @Override //툴바액션 //toolbar item click event
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {

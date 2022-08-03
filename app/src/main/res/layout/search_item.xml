@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/linearLayoutSearch"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="?android:attr/listDivider" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="5dp">
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="11dp"
+      android:layout_weight="1"
+      android:text="@string/List"
+      android:textColor="#03A9F4"
+      android:textSize="14sp" />
+
+    <TextView
+      android:id="@+id/tvSearchTableName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="5"
+      android:text="table name"
+      android:textColor="#03A9F4"
+      android:textSize="16sp" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginBottom="9dp">
+
+    <TextView
+      android:id="@+id/tvSearchId"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_weight="0"
+      android:visibility="invisible" />
+
+    <TextView
+      android:id="@+id/tvSearchWord"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_margin="5dp"
+      android:layout_weight="20"
+      android:text="word"
+      android:textColor="?attr/actionMenuTextColor"
+      android:textSize="16sp" />
+
+    <TextView
+      android:id="@+id/tvSearchMeaning"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_margin="5dp"
+      android:layout_marginLeft="5dp"
+      android:layout_marginTop="5dp"
+      android:layout_marginRight="0dp"
+      android:layout_marginBottom="5dp"
+      android:layout_weight="20"
+      android:text="meaning"
+      android:textColor="?attr/actionMenuTextColor"
+      android:textSize="16sp" />
+
+  </LinearLayout>
+
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    android:background="?android:attr/listDivider" />
+
+</LinearLayout>

@@ -99,6 +99,9 @@ public class QueryTable extends AppCompatActivity {
         study();
         return true;
 
+      case R.id.itemStudyInverse:
+        studyInverse();
+        return true;
     }
     return super.onOptionsItemSelected(item);
   }

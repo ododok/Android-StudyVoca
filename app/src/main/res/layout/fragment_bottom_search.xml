@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:orientation="vertical"
   tools:context=".BottomFragmentSearch">
 
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="fragment bottom search" />
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
 
-</FrameLayout>
+    <SearchView
+      android:id="@+id/searchView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="20dp"
+      android:iconifiedByDefault="false"
+      android:isScrollContainer="false"
+      android:maxLength="70"
+      android:singleLine="true"
+      app:iconifiedByDefault="false" />
+
+
+  </LinearLayout>
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewSearch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
+</LinearLayout>

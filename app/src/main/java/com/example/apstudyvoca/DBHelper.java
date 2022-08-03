@@ -50,8 +50,6 @@ public class DBHelper extends SQLiteOpenHelper {
         "type = 'table' AND name != 'android_metadata' AND name != 'sqlite_sequence';";
     Cursor cursor = getReadableDatabase().rawQuery(sql,null);
     int count=cursor.getCount();
-
-    Log.d("db", "테이블 수는 "+count);
     return count;
   }
 
@@ -74,8 +72,59 @@ public class DBHelper extends SQLiteOpenHelper {
   }
 
 
+  //특정 검색어가 담긴 row들을 전체 테이블을 모두 검색해서 찾아주고 리스트로 리턴.
+  // keyword로 word와 meaning column을 전부 검색한다. 모든 테이블에서.
+  //그 다음 각 테이블별로 word나 meaning에 해당 단어가 들어가는지 검사한다.
+  public ArrayList<SearchItem> search(String keyword) {
+
+    ArrayList<SearchItem> list = new ArrayList<>();
+    String[] tableNames = listOfTables();
+    SQLiteDatabase db = getWritableDatabase();
+
+    for (int i = 0; i < tableNames.length; i++) { //각각의 테이블을 돌아가면서 tableList[i]에 대입.
+
+
+      String sql = "SELECT * FROM " + tableNames[i] + " WHERE word LIKE  '%" + keyword + "%';";
+      //String sql = "SELECT * FROM " + tableNames[i] + " WHERE word MATCH '" + keyword + "';";
+
+
+      Cursor cursor = db.rawQuery(sql, null);
+
+      while (cursor.moveToNext()) {
+        int id = cursor.getInt(0);
+        String word = cursor.getString(1);
+        String meaning = cursor.getString(2);
+
+        if (keyword.equals(word) || keyword.equals(meaning)) {
+          list.add(new SearchItem(tableNames[i], id, word, meaning));
+        }
+      }
+
+      //meaning 도 검색하게 해야 한다.
+
+      cursor.close();
+
+    }
+
+    //    list.add(new SearchItem("t테이블", 10, "word1", "meaning1"));
+//    list.add(new SearchItem("리스트가나다", 3, keyword, "meaning2"));
+
+/*        Log.d("db", "items 사이즈 : "+String.valueOf(items.size()));
+        for(int k=0; k<items.size(); k++){
+          Log.d("db", items.get(k).toString());
+        }*/
+
+    return list;
+  }//search
+
+
+
+
   //create a table
   public void createTable(@NonNull String tableName){
+    //problem d'apostrophe ' --> ''
+    tableName = tableName.replace("'", "''");
+
     tableName = checkTableName(tableName);
     SQLiteDatabase db = getWritableDatabase();
     String sql = "CREATE TABLE "+tableName+" (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
@@ -87,6 +136,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
   //테이블의 이름을 변경해주는 메서드
   public void editTableName(String oldTableName, String newTableName){
+    //problem d'apostrophe ' --> ''
+    newTableName = newTableName.replace("'", "''");
+
     newTableName = checkTableName(newTableName);
     String sql = "ALTER TABLE "+oldTableName+" RENAME TO "+newTableName+";";
     SQLiteDatabase db = getWritableDatabase();
@@ -96,6 +148,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 //Verifier si le nom de table est convenant  //테이블명 적합성 체크
   public String checkTableName(String tableName){
+
     //Le nom d'une table ne doit pas commencé par un chiffre //테이블 이름은 숫자로 시작하면 안 됨.
     String sample = String.valueOf(tableName.charAt(0));
     if(sample.matches("[0-9]")){
@@ -103,8 +156,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //le nom d'une table ne peut pas avoir des caractères spéciaux.//테이블이름에 특수문자는 불가능
-    String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-'\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
+    String charsToRemove = "\n+ ×÷=/<>[]!@#₩%^&*()-\":;,?`~\\|{}€£¥$°•○●□■♤♡◇♧☆▪︎¤《》¡¿.,";
     tableName = CharMatcher.anyOf(charsToRemove).removeFrom(tableName);
+
 
     //vérification de redondance  //테이블이름 중복체크.
     String[] tables = listOfTables();
@@ -133,7 +187,7 @@ public class DBHelper extends SQLiteOpenHelper {
   //특정 테이블에 자료를 입력하는 insert //insert a record(row) in a specific table.
   //if it returns true == success,  returns false == fail
   public boolean insert(String word, String meaning, String tableName){
-    //cas redondance : Overlap case : 중복일 때 :
+    //cas redondance : Overlap of the word  : 중복일 때 :
     String sql = "SELECT word FROM "+tableName+";";
     SQLiteDatabase db = getReadableDatabase();
     Cursor cursor = db.rawQuery(sql, null);
@@ -144,12 +198,43 @@ public class DBHelper extends SQLiteOpenHelper {
         return false; //[erreur] S'il y a le meme mot, retourne false et finit cette methode.
       }
     }
+
+    //problem d'apostrophe ' --> ''
+    word = word.replace("'", "''");
+    meaning = meaning.replace("'", "''");
+
     //Non-redondance --> Inserer le data //Non-Overlap case --> insert the word.
     db = getWritableDatabase();
     sql = "INSERT INTO "+tableName+" (word, meaning) VALUES ('"+
         word+"', '"+meaning+"');";
     db.execSQL(sql);
     return true; //if the inserting is done without error, return true.
+  }
+
+
+  //Modify the values of a row //modifier les valeurs d'une ligne //행 하나의 값 수정.
+  public boolean modifyRow(String tableName, int _id, String word, String meaning){
+    //problem d'apostrophe ' --> ''
+    word = word.replace("'", "''");
+    meaning = meaning.replace("'", "''");
+
+    //cas redondance : Overlap case : 중복일 때 :
+    String sql = "SELECT * FROM "+tableName+";";
+    SQLiteDatabase db = getReadableDatabase();
+    Cursor cursor = db.rawQuery(sql, null);
+    while(cursor.moveToNext()){
+      if(word.equals(cursor.getString(1)) && cursor.getInt(0) != _id){
+        Log.d("db", "[insert Method error] There's same word : "+word);
+        //Toast.makeText(context,"Word already exist", Toast.LENGTH_SHORT).show();
+        return false; //[erreur] S'il y a le meme mot, retourne false et finit cette methode.
+      }
+    }
+
+    db = getWritableDatabase();
+    sql = "UPDATE "+tableName+" SET word = '"+word+"', "
+        +"meaning = '"+meaning+"' WHERE _id="+_id+";";
+    db.execSQL(sql);
+    return true;
   }
 
 
@@ -175,13 +260,7 @@ public class DBHelper extends SQLiteOpenHelper {
     return words;
   }
 
-  //Modify the values of a row //modifier les valeurs d'une ligne //행 하나의 값 수정.
-  public void modifyRow(String tableName, int _id, String word, String meaning){
-    SQLiteDatabase db = getWritableDatabase();
-    String sql = "UPDATE "+tableName+" SET word = '"+word+"', "
-        +"meaning = '"+meaning+"' WHERE _id="+_id+";";
-    db.execSQL(sql);
-  }
+
 
   //Delete a row //supprimer une ligne //행 하나 지우기
   public void deleteRow(String tableName, int _id){
@@ -194,15 +273,13 @@ public class DBHelper extends SQLiteOpenHelper {
   //db의 특정 테이블에서 라인(행/레코드) 하나를 찾아주는 메서드
   public String[] findRow(String tableName, int _id){
 
+
     return null;
   }
 
 
 
-  //특정 검색어가 담긴 row들을 전체 테이블을 모두 검색해서 찾아주고 리스트로 리턴.
-  public ArrayList<Word> search(String keyWord){
-    return null;
-  }
+
 
 
 

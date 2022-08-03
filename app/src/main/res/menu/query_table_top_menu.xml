@@ -4,14 +4,20 @@
 
   <item
     android:id="@+id/itemAdd"
-    android:icon="@drawable/ic_baseline_add_circle_24"
+    android:icon="@drawable/plus"
     android:title="ADD"
     app:showAsAction="always|withText" />
 
   <item
     android:id="@+id/itemStudy"
-    android:icon="@drawable/ic_baseline_play_circle_24"
+    android:icon="@drawable/play_right"
     android:title="Study"
     app:showAsAction="always|withText" />
+
+  <item
+    android:id="@+id/itemStudyInverse"
+    android:icon="@drawable/play_left"
+    android:title="Item"
+    app:showAsAction="always|withText"/>
 
 </menu>

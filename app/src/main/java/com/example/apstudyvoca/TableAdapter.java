@@ -104,8 +104,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
       //Edit Button listener
       imageViewEditTable.setOnClickListener(view->{
         if(editTableMode == true){
-          //Toast.makeText(context, "edit아이콘 눌림 (Toast:TableAdapter.java)",Toast.LENGTH_SHORT).show();
-
+          //Toast.makeText(context, "edit button pushed (Toast:TableAdapter.java)",Toast.LENGTH_SHORT).show();
 
           //유저가 뭘 선택하건 이전 액티비티를 refresh할 것.
           dialogView = View.inflate(context, R.layout.dialog_modif_table, null);
@@ -150,7 +149,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
       //Delete Button Listener
       imageViewDeleteTable.setOnClickListener(v->{
         if(editTableMode == true){
-          //Toast.makeText(context, "DELETE 눌림 (Toast:TableAdapter.java)",Toast.LENGTH_SHORT).show();
+
           //여기에 table의 이름수정과 삭제를 할 수 있는 dialog나 액티비티 띄울 것.
 
           //유저가 뭘 선택하건 이전 액티비티를 refresh할 것.

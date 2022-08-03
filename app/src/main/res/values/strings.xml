@@ -17,4 +17,6 @@
   <string name="DoNotLeaveEmpty">Please do not leave word and meaning empty</string>
   <string name="Search">Search</string>
   <string name="StudyInverse">Study🔄</string>
+  <string name="List">List</string>
+  <string name="SameWord">There\'s already the same word.</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.apstudyvoca;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,16 +14,20 @@ public class MainActivity extends AppCompatActivity {
   BottomFragmentVocas bottomFragmentVocas;
   BottomFragmentSearch bottomFragmentSearch;
   BottomFragmentInfo bottomFragmentInfo;
+  Toolbar toolbar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);//
     setContentView(R.layout.activity_main);//
-    setTitle("Android Project - Study Vocas");
+    //setTitle("Android Project - Study Vocas");
 
     initBottomFragments();
 
-
+    toolbar = findViewById(R.id.toolBarMain);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setIcon(R.drawable.icon_minicat);
+    getSupportActionBar().setTitle(" Voca Study"); //title
 
   }//onCreate
 
