@@ -1,5 +1,7 @@
 # Android-StudyVoca
 
+[![example](http://img.youtube.com/EzlU8GZhdzQ/0.jpg)](https://youtu.be/EzlU8GZhdzQ)
+
 Ecrivez vos propre cartes de vocabulaires pour étudier une langue étrangère.
 Téléchargez le fichier APK pour l'installation dans votre téléphone : https://github.com/ododok/Android-StudyVoca/raw/master/app-debug.apk
 
